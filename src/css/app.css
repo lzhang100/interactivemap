@@ -1,0 +1,34 @@
+@import '~antd/dist/antd.css'; 
+
+.APP {
+  text-align: center;
+}
+
+/* .logo {
+  height: 100px;
+  padding: 15px;
+  background-image: url(./logo_sjsu.png);
+  background-size: 80px;
+  background-repeat: no-repeat;
+  background-color: darkblue;
+} */
+
+.header {
+  /* background-image: url(./logo_sjsu.png);
+  background-size: 80px;
+  background-repeat: no-repeat; */
+  background: darkblue;
+  padding: 15px; 
+  height: 150px;
+}
+.header img {
+  padding: 15px; 
+  height: 150px;
+  width: 500px;
+}
+
+.drawer img{
+  padding: 15px; 
+  height: 300px;
+  width: 220px;
+}
