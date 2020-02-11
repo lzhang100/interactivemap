@@ -1,8 +1,13 @@
 import React from "react";
-import {GoogleMap, withScriptjs, withGoogleMap,Polygon} from "react-google-maps";
+import {GoogleMap, withScriptjs, withGoogleMap, Polygon} from "react-google-maps";
 import {Drawer} from 'antd';
+import DirectionWindow from "./directionWindow";
+import DirectionsDisplay from './directionsDisplay'
+// const { compose, withProps, lifecycle } = require("recompose");
+// import { compose, withProps, lifecycle } from "recompose"
 
-function Map({closeDrawer, openDrawer, currentDrawerState}){
+function Map({closeDrawer, openDrawer, currentDrawerState, currentDirectionsState, showDirections, originState, destState, setDirections}){
+  // console.log('currentDirectionsState',{currentDirectionsState});
   var engBuildingCoords =[
     {lat: 37.3377, lng: -121.8815},
     {lat: 37.3372, lng: -121.8825},
@@ -11,7 +16,7 @@ function Map({closeDrawer, openDrawer, currentDrawerState}){
   ];
   return(
     <GoogleMap
-      defaultZoom={17}
+      defaultZoom={16.5}
       defaultCenter={{lat: 37.3352, lng: -121.8811}}
       // center={{lat: 37.272040, lng: -121.861260}}
       options={{ styles: [{ elementType: "labels", featureType: "poi.business", stylers: [{ visibility: "off", }], }], }}
@@ -27,26 +32,29 @@ function Map({closeDrawer, openDrawer, currentDrawerState}){
         }}
         onClick={openDrawer}
       />
+      {/* panel={ document.getElementById('panel') } />} */}
+      <DirectionsDisplay visible={currentDirectionsState} origin={originState} destination={destState}/>
       <Drawer className="drawer"
       title="Charles W. Davidson College of Engineering"
       placement="left"
       closable={true}
       onClose={closeDrawer}
       visible={currentDrawerState}
-    >
-      {/* <h4>Charles W. Davidson College of Engineering</h4> */}
-      <img src={require('./css/engbuilding1.jpg')} alt= "Charles W. Davidson College of Engineering"></img>
-      <p>The Charles W. Davidson College of Engineering Building houses many of the departments of the engineering programs at SJSU, including:
-        Aerospace Engineering
-        Biomedical, Chemical and Materials Engineering
-        Civil and Environmental Engineering
-        Computer Engineering
-        Dean's Office
-        Electrical Engineering
-        General Engineering
-        Industrial and Systems Engineering
-        Mechanical Engineering
-        Extended Studies</p>
+      >
+        {/* <h4>Charles W. Davidson College of Engineering</h4> */}
+        <img src={require('./css/engbuilding1.jpg')} alt= "Charles W. Davidson College of Engineering"></img>
+        <p>The Charles W. Davidson College of Engineering Building houses many of the departments of the engineering programs at SJSU, including:
+          Aerospace Engineering
+          Biomedical, Chemical and Materials Engineering
+          Civil and Environmental Engineering
+          Computer Engineering
+          Dean's Office
+          Electrical Engineering
+          General Engineering
+          Industrial and Systems Engineering
+          Mechanical Engineering
+          Extended Studies</p>
+        <DirectionWindow showDirections={showDirections} closeDrawer={closeDrawer} setDirections={setDirections}/>
     </Drawer>
     </GoogleMap>
   )
