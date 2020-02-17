@@ -32,7 +32,6 @@ function Map({closeDrawer, openDrawer, currentDrawerState, currentDirectionsStat
         }}
         onClick={openDrawer}
       />
-      {/* panel={ document.getElementById('panel') } />} */}
       <DirectionsDisplay visible={currentDirectionsState} origin={originState} destination={destState} travelMode={travelModeState}/>
       <Drawer className="drawer"
       title="Charles W. Davidson College of Engineering"

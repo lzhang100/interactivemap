@@ -149,6 +149,8 @@ export default class DirectionWindow extends React.Component {
     // this.setState({ visible: false });
     document.getElementById('directionPanel').innerHTML = "";
     this.props.hideDirections();
+    this.setState({ visible: false });
+    this.props.closeDrawer();
   };
 
   handleCreate = () => {
