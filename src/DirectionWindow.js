@@ -75,9 +75,9 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
           cancelText="Return to Map"
           onCancel={onCancel}
           footer={[
-          <Button type="danger" onClick={onClear}> Clear</Button>,
-          <Button type="primary" onClick={onCreate}> Go</Button>,
-          <Button type="default" icon="fullscreen-exit" onClick={onCancel}> Map</Button>,
+          <Button key='onclear' type="danger" onClick={onClear}> Clear</Button>,
+          <Button key='oncreate'type="primary" onClick={onCreate}> Go</Button>,
+          <Button key='onexit' type="default" icon="fullscreen-exit" onClick={onCancel}> Map</Button>,
           ]}
           closeIcon={
             <Icon type="fullscreen-exit" />
@@ -118,9 +118,6 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
             </Form.Item>
           </Form>
           <div id='panel'></div>
-          {/* <Button type="primary" icon="arrow-right" onClick={onCreate}>
-                  Get Directions
-          </Button> */}
         </Modal>
       );
     }
@@ -150,7 +147,7 @@ export default class DirectionWindow extends React.Component {
     const { form } = this.formRef.props;
     form.resetFields();
     // this.setState({ visible: false });
-    document.getElementById('panel').innerHTML = ''
+    document.getElementById('panel').innerHTML = "<div id='panel'></div>"
   };
 
   handleCreate = () => {

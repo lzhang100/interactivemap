@@ -3,7 +3,6 @@ import {Layout, Menu, Icon} from "antd";
 import './css/app.css';
 import './map';
 import WrappedMap from "./map";
-// import Panel from "./panel";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -109,7 +108,6 @@ class App extends Component {
               }>
             </SubMenu>
           </Menu>
-          {/* <Panel visible={this.state.showDirections}/> */}
         </Sider>
           <Content style={{ margin: '0 16px' }}>
             <div className="links">
