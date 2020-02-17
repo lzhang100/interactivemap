@@ -11,6 +11,7 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
       this.state = {
         origin: '',
         destination: '',
+        // showPanel:true
       };
       // this.handleClick = this.handleClick.bind(this);
     }
@@ -147,7 +148,7 @@ export default class DirectionWindow extends React.Component {
     const { form } = this.formRef.props;
     form.resetFields();
     // this.setState({ visible: false });
-    document.getElementById('panel').innerHTML = "<div id='panel'></div>"
+    document.getElementById('panel').innerHTML = ""
   };
 
   handleCreate = () => {
