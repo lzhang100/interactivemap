@@ -11,41 +11,34 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
       this.state = {
         origin: '',
         destination: '',
-        // showPanel:true
       };
-      // this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick = () =>{
-      var currLoc = this.state.origin
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
           var pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
-          // var location = pos.lat + ',' + pos.lng
+          var currLoc = pos.lat + ', ' + pos.lng
           console.log('get geolocation', pos)
           console.log('get geolocation, lat:', String(pos.lat), ' lon:', String(pos.lng))
-          currLoc = 'Current Location: Latitude:' + String(pos.lat) + ' Lontitude:' + String(pos.lng)
-          document.getElementById('currLoc').innerHTML = currLoc
+          // currLoc = 'Current Location: Latitude:' + String(pos.lat) + ' Lontitude:' + String(pos.lng)
+          document.getElementById('currLoc').innerHTML = 'Current Location: Latitude:' + String(pos.lat) + ' Lontitude:' + String(pos.lng)
           console.log('change field value')
-          // return pos.lat + pos.lon
-          // infoWindow.setPosition(pos);
-          // infoWindow.setContent('Location found.');
-          // infoWindow.open(map);
+          this.props.form.setFieldsValue({
+            origin: currLoc,
+          });
+          console.log(pos)
           // map.setCenter(pos);
-        }, function() {
+        }.bind(this), function() {
           this.handleLocationError(true);
         });
       } else {
         // Browser doesn't support Geolocation
         this.handleLocationError(false);
       }
-      this.props.form.setFieldsValue({
-        origin: 'currLoc',
-      });
-      console.log(currLoc)
     }
 
     handleLocationError = (browserHasGeolocation)=> {
@@ -58,12 +51,6 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
       //                       'Error: Your browser doesn\'t support geolocation.');
       // infoWindow.open(map);
     }
-
-    // clearDirections = ()=> {
-    //   console.log(browserHasGeolocation ?
-    //     'Error: The Geolocation service failed.' :
-    //     'Error: Your browser doesn\'t support geolocation.')
-    // }
 
     render() {
       // console.log('render direction form button')
@@ -148,6 +135,7 @@ export default class DirectionWindow extends React.Component {
     const { form } = this.formRef.props;
     form.resetFields();
     document.getElementById('directionPanel').innerHTML = "";
+    document.getElementById('currLoc').innerHTML = "";
     this.props.hideDirections();
     // this.setState({ visible: false });
     this.props.hideModal();
