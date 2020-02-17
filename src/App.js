@@ -3,6 +3,7 @@ import {Layout, Menu, Icon} from "antd";
 import './css/app.css';
 import './map';
 import WrappedMap from "./map";
+// import Panel from "./panel";
 
 //const { Layout, Menu, Breadcrumb, Icon } = antd;
 
@@ -20,6 +21,7 @@ class App extends Component {
       showDirections: false,
       originState: '',
       destState: '',
+      travelModeState: '',
     };
     // this.setDirections = this.setDirections.bind(this);
   }
@@ -50,7 +52,7 @@ class App extends Component {
     this.setState({showDirections: true});
   };
 
-  setDirections =(origin, dest)=>{
+  setDirections =(origin, dest, travelMode)=>{
     // console.log('original directions')
     // console.log(this.state.originState)
     // console.log(this.state.destState)
@@ -58,6 +60,7 @@ class App extends Component {
     // console.log('passed in dest:', typeof dest, dest)
     this.setState({originState: origin},);
     this.setState({destState: dest});
+    this.setState({travelModeState: travelMode});
     // console.log('new directions')
     // console.log(this.state.originState)
     // console.log(this.state.destState)
@@ -121,7 +124,7 @@ class App extends Component {
               }>
             </SubMenu>
           </Menu>
-          <div id="panel"></div>
+          {/* <Panel visible={this.state.showDirections}/> */}
         </Sider>
           <Content style={{ margin: '0 16px' }}>
             <div className="links">
@@ -141,6 +144,7 @@ class App extends Component {
                 showDirections={this.showDirections}
                 originState={this.state.originState}
                 destState={this.state.destState}
+                travelModeState={this.state.travelModeState}
                 setDirections={this.setDirections}
               />
             <Footer style={{ textAlign: 'center' }}>SJSU Interactive Campus Map ©2019 Created by ICMap</Footer>

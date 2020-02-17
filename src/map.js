@@ -6,7 +6,7 @@ import DirectionsDisplay from './directionsDisplay'
 // const { compose, withProps, lifecycle } = require("recompose");
 // import { compose, withProps, lifecycle } from "recompose"
 
-function Map({closeDrawer, openDrawer, currentDrawerState, currentDirectionsState, showDirections, originState, destState, setDirections}){
+function Map({closeDrawer, openDrawer, currentDrawerState, currentDirectionsState, showDirections, originState, destState, travelModeState, setDirections}){
   // console.log('currentDirectionsState',{currentDirectionsState});
   var engBuildingCoords =[
     {lat: 37.3377, lng: -121.8815},
@@ -33,7 +33,7 @@ function Map({closeDrawer, openDrawer, currentDrawerState, currentDirectionsStat
         onClick={openDrawer}
       />
       {/* panel={ document.getElementById('panel') } />} */}
-      <DirectionsDisplay visible={currentDirectionsState} origin={originState} destination={destState}/>
+      <DirectionsDisplay visible={currentDirectionsState} origin={originState} destination={destState} travelMode={travelModeState}/>
       <Drawer className="drawer"
       title="Charles W. Davidson College of Engineering"
       placement="left"

@@ -1,12 +1,22 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './css/app.css'
-import { Button, Modal, Form, Input, Radio, Row, Col } from 'antd';
+import { Button, Icon, Modal, Form, Input, Radio, Row, Col } from 'antd';
 
 const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
   // eslint-disable-next-line
   class extends React.Component {
-    handleClick = () => {
+    constructor(props) {
+      super(props);
+      this.state = {
+        origin: '',
+        destination: '',
+      };
+      // this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick = () =>{
+      var currLoc = this.state.origin
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
           var pos = {
@@ -16,8 +26,9 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
           // var location = pos.lat + ',' + pos.lng
           console.log('get geolocation', pos)
           console.log('get geolocation, lat:', String(pos.lat), ' lon:', String(pos.lng))
-          var currLoc = 'Current Location: lat:' + String(pos.lat) + ' lon:' + String(pos.lng)
+          currLoc = 'Current Location: Latitude:' + String(pos.lat) + ' Lontitude:' + String(pos.lng)
           document.getElementById('currLoc').innerHTML = currLoc
+          console.log('change field value')
           // return pos.lat + pos.lon
           // infoWindow.setPosition(pos);
           // infoWindow.setContent('Location found.');
@@ -30,6 +41,10 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
         // Browser doesn't support Geolocation
         this.handleLocationError(false);
       }
+      this.props.form.setFieldsValue({
+        origin: 'currLoc',
+      });
+      console.log(currLoc)
     }
 
     handleLocationError = (browserHasGeolocation)=> {
@@ -43,20 +58,33 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
       // infoWindow.open(map);
     }
 
+    // clearDirections = ()=> {
+    //   console.log(browserHasGeolocation ?
+    //     'Error: The Geolocation service failed.' :
+    //     'Error: Your browser doesn\'t support geolocation.')
+    // }
+
     render() {
       // console.log('render direction form button')
-      const { visible, onCancel, onCreate, form } = this.props;
+      const { visible, onCancel, onCreate, onClear, form } = this.props;
       const { getFieldDecorator } = form;
       return (
         <Modal
           visible={visible}
           title="Get Directions"
-          okText="Go"
+          cancelText="Return to Map"
           onCancel={onCancel}
-          onOk={onCreate}
+          footer={[
+          <Button type="danger" onClick={onClear}> Clear</Button>,
+          <Button type="primary" onClick={onCreate}> Go</Button>,
+          <Button type="default" icon="fullscreen-exit" onClick={onCancel}> Map</Button>,
+          ]}
+          closeIcon={
+            <Icon type="fullscreen-exit" />
+          }
         >
           <Form layout="vertical">
-            <Form.Item label="Origin">
+            <Form.Item label="From">
               <Row gutter={3}>
               <Col span={22}>
                 {getFieldDecorator('origin', {
@@ -71,24 +99,28 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
             </Row>
             <div id = 'currLoc'></div>
             </Form.Item>
-            <Form.Item label="Destination">
+            <Form.Item label="To">
               {getFieldDecorator('destination',{
                 rules: [{ required: true, message: 'Please input the destination!' }],
                 initialValue: 'Charles W. Davidson College of Engineering',
               })(<Input type="textarea" />)}
             </Form.Item>
-            <Form.Item label="Type">
-              {getFieldDecorator('radio-button', {
-                initialValue: 'c',
+            <Form.Item label="Travel Mode">
+              {getFieldDecorator('travelMode', {
+                initialValue: 'WALKING',
               })(
                 <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="a">Driving</Radio.Button>
-                  <Radio.Button value="b">Transit</Radio.Button>
-                  <Radio.Button value="c">Walking</Radio.Button>
+                  <Radio.Button value="DRIVING">Driving</Radio.Button>
+                  <Radio.Button value="TRANSIT">Transit</Radio.Button>
+                  <Radio.Button value="WALKING">Walking</Radio.Button>
                 </Radio.Group>,
               )}
             </Form.Item>
           </Form>
+          <div id='panel'></div>
+          {/* <Button type="primary" icon="arrow-right" onClick={onCreate}>
+                  Get Directions
+          </Button> */}
         </Modal>
       );
     }
@@ -113,6 +145,14 @@ export default class DirectionWindow extends React.Component {
     this.setState({ visible: false });
   };
 
+  handleClear = () => {
+    console.log('handle clear')
+    const { form } = this.formRef.props;
+    form.resetFields();
+    // this.setState({ visible: false });
+    document.getElementById('panel').innerHTML = ''
+  };
+
   handleCreate = () => {
     console.log('handle create')
     const { form } = this.formRef.props;
@@ -121,11 +161,11 @@ export default class DirectionWindow extends React.Component {
         return;
       }
       console.log('Received values of form: ', values);
-      form.resetFields();
-      this.setState({ visible: false });
+      // form.resetFields();
+      // this.setState({ visible: false });
       this.props.showDirections();
       this.props.closeDrawer();
-      this.props.setDirections(values.origin, values.destination)
+      this.props.setDirections(values.origin, values.destination, values.travelMode)
     });
   };
 
@@ -144,6 +184,7 @@ export default class DirectionWindow extends React.Component {
           visible={this.state.visible}
           onCancel={this.handleCancel}
           onCreate={this.handleCreate}
+          onClear={this.handleClear}
         />
       </div>
     );
