@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Layout, Menu, Icon} from "antd";
+import {Layout, Menu, Icon, Button} from "antd";
 import './css/app.css';
 import './map';
 import WrappedMap from "./map";
@@ -16,6 +16,7 @@ class App extends Component {
     originState: '',
     destState: '',
     travelModeState: '',
+    modalState:false,
   };
 
   onCollapse = collapsed => {
@@ -29,6 +30,16 @@ class App extends Component {
 
   onClose =()=>{
     this.setState({visible:false});
+  };
+
+  showModal = () => {
+    console.log('change to showModal')
+    this.setState({modalState: true});
+  };
+
+  hideModal = () => {
+    console.log('change to hideModal')
+    this.setState({modalState: false});
   };
 
   showDirections = () => {
@@ -118,6 +129,7 @@ class App extends Component {
             <div className="links">
               <a href={"https://www.sjsu.edu"} target={"_blank"}> SJSU Home |</a>
               <a href={"/"}> ICMap Home </a>
+              {this.state.showDirections && <Button type='link' icon="info-circle" onClick={this.showModal}> Directions Details </Button>}
             </div>
             {/* <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div> */}
             <WrappedMap
@@ -135,6 +147,9 @@ class App extends Component {
                 destState={this.state.destState}
                 travelModeState={this.state.travelModeState}
                 setDirections={this.setDirections}
+                showModal={this.showModal}
+                hideModal={this.hideModal}
+                modalState={this.state.modalState}
               />
             <Footer style={{ textAlign: 'center' }}>SJSU Interactive Campus Map ©2019 Created by ICMap</Footer>
           </Content>

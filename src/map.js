@@ -6,7 +6,7 @@ import DirectionsDisplay from './directionsDisplay'
 // const { compose, withProps, lifecycle } = require("recompose");
 // import { compose, withProps, lifecycle } from "recompose"
 
-function Map({closeDrawer, openDrawer, currentDrawerState, currentDirectionsState, showDirections, hideDirections, originState, destState, travelModeState, setDirections}){
+function Map({closeDrawer, openDrawer, currentDrawerState, currentDirectionsState, showDirections, hideDirections, originState, destState, travelModeState, setDirections, showModal, hideModal, modalState}){
   // console.log('currentDirectionsState',{currentDirectionsState});
   var engBuildingCoords =[
     {lat: 37.3377, lng: -121.8815},
@@ -32,7 +32,7 @@ function Map({closeDrawer, openDrawer, currentDrawerState, currentDirectionsStat
         }}
         onClick={openDrawer}
       />
-      <DirectionsDisplay visible={currentDirectionsState} origin={originState} destination={destState} travelMode={travelModeState}/>
+      <DirectionsDisplay visible={currentDirectionsState} origin={originState} destination={destState} travelMode={travelModeState} />
       <Drawer className="drawer"
       title="Charles W. Davidson College of Engineering"
       placement="left"
@@ -53,7 +53,7 @@ function Map({closeDrawer, openDrawer, currentDrawerState, currentDirectionsStat
           Industrial and Systems Engineering
           Mechanical Engineering
           Extended Studies</p>
-        <DirectionWindow showDirections={showDirections} hideDirections={hideDirections} closeDrawer={closeDrawer} setDirections={setDirections}/>
+        <DirectionWindow showDirections={showDirections} hideDirections={hideDirections} closeDrawer={closeDrawer} setDirections={setDirections} showModal={showModal} hideModal={hideModal} modalState={modalState}/>
     </Drawer>
     </GoogleMap>
   )

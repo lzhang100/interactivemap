@@ -125,31 +125,32 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
 );
 
 export default class DirectionWindow extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     visible: false,
+  //   };
+  // }
 
-  showModal = () => {
-    console.log('showModal')
-    this.setState({ visible: true });
-  };
+  // showModal = () => {
+  //   console.log('showModal')
+  //   this.setState({ visible: true });
+  // };
 
   handleCancel = () => {
     console.log('handle cancel')
-    this.setState({ visible: false });
+    // this.setState({ visible: false });
+    this.props.hideModal();
   };
 
   handleClear = () => {
     console.log('handle clear')
     const { form } = this.formRef.props;
     form.resetFields();
-    // this.setState({ visible: false });
     document.getElementById('directionPanel').innerHTML = "";
     this.props.hideDirections();
-    this.setState({ visible: false });
+    // this.setState({ visible: false });
+    this.props.hideModal();
     this.props.closeDrawer();
   };
 
@@ -161,8 +162,6 @@ export default class DirectionWindow extends React.Component {
         return;
       }
       console.log('Received values of form: ', values);
-      // form.resetFields();
-      // this.setState({ visible: false });
       this.props.showDirections();
       this.props.closeDrawer();
       this.props.setDirections(values.origin, values.destination, values.travelMode)
@@ -176,12 +175,12 @@ export default class DirectionWindow extends React.Component {
   render() {
     return (
       <div>
-        <Button type="primary" onClick={this.showModal}>
+        <Button type="primary" onClick={this.props.showModal}>
           Get Directions
         </Button>
         <DirectionCreateForm
           wrappedComponentRef={this.saveFormRef}
-          visible={this.state.visible}
+          visible={this.props.modalState}
           onCancel={this.handleCancel}
           onCreate={this.handleCreate}
           onClear={this.handleClear}
