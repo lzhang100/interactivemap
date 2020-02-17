@@ -73,7 +73,6 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
         <Modal
           visible={visible}
           title="Get Directions"
-          cancelText="Return to Map"
           onCancel={onCancel}
           footer={[
           <Button key='onclear' type="danger" onClick={onClear}> Clear</Button>,
@@ -118,7 +117,7 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
               )}
             </Form.Item>
           </Form>
-          <div id='panel'></div>
+          <div id='directionPanel'></div>
         </Modal>
       );
     }
@@ -148,7 +147,8 @@ export default class DirectionWindow extends React.Component {
     const { form } = this.formRef.props;
     form.resetFields();
     // this.setState({ visible: false });
-    document.getElementById('panel').innerHTML = ""
+    document.getElementById('directionPanel').innerHTML = "";
+    this.props.hideDirections();
   };
 
   handleCreate = () => {

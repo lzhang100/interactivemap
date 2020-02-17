@@ -36,6 +36,11 @@ class App extends Component {
     this.setState({showDirections: true});
   };
 
+  hideDirections = () => {
+    console.log('change to hideDirections')
+    this.setState({showDirections: false});
+  };
+
   setDirections =(origin, dest, travelMode)=>{
     // console.log('original directions')
     // console.log(this.state.originState)
@@ -125,6 +130,7 @@ class App extends Component {
                 currentDrawerState={this.state.visible}
                 currentDirectionsState={this.state.showDirections}
                 showDirections={this.showDirections}
+                hideDirections={this.hideDirections}
                 originState={this.state.originState}
                 destState={this.state.destState}
                 travelModeState={this.state.travelModeState}

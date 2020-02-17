@@ -32,7 +32,7 @@ export default class DirectionsDisplay extends React.Component {
         // this.displayPanel()
 
         return (
-          this.props.visible && this.state.display) && <DirectionsRenderer directions={this.state.directions} panel={ document.getElementById('panel') }/>
+          this.props.visible && this.state.display) && <DirectionsRenderer directions={this.state.directions} panel={ document.getElementById('directionPanel') }/>
           // this.props.visible && this.state.display) && <DirectionsRenderer directions={this.state.directions} panel={ document.getElementById('panel')} ref={this.renderer}/>
         }
 

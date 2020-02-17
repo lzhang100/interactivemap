@@ -6,7 +6,7 @@ import DirectionsDisplay from './directionsDisplay'
 // const { compose, withProps, lifecycle } = require("recompose");
 // import { compose, withProps, lifecycle } from "recompose"
 
-function Map({closeDrawer, openDrawer, currentDrawerState, currentDirectionsState, showDirections, originState, destState, travelModeState, setDirections}){
+function Map({closeDrawer, openDrawer, currentDrawerState, currentDirectionsState, showDirections, hideDirections, originState, destState, travelModeState, setDirections}){
   // console.log('currentDirectionsState',{currentDirectionsState});
   var engBuildingCoords =[
     {lat: 37.3377, lng: -121.8815},
@@ -54,7 +54,7 @@ function Map({closeDrawer, openDrawer, currentDrawerState, currentDirectionsStat
           Industrial and Systems Engineering
           Mechanical Engineering
           Extended Studies</p>
-        <DirectionWindow showDirections={showDirections} closeDrawer={closeDrawer} setDirections={setDirections}/>
+        <DirectionWindow showDirections={showDirections} hideDirections={hideDirections} closeDrawer={closeDrawer} setDirections={setDirections}/>
     </Drawer>
     </GoogleMap>
   )
