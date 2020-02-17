@@ -5,34 +5,19 @@ import './map';
 import WrappedMap from "./map";
 // import Panel from "./panel";
 
-//const { Layout, Menu, Breadcrumb, Icon } = antd;
-
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    console.log('app props', props)
-    this.state = {
-      collapsed: false,
-      visible: false,
-      showDirections: false,
-      originState: '',
-      destState: '',
-      travelModeState: '',
-    };
-    // this.setDirections = this.setDirections.bind(this);
-  }
-
-  // state = {
-  //   collapsed: false,
-  //   visible: false,
-  //   showDirections: false,
-  //   originState: 'aaa',
-  //   destState: '',
-  // };
+  state = {
+    collapsed: false,
+    visible: false,
+    showDirections: false,
+    originState: '',
+    destState: '',
+    travelModeState: '',
+  };
 
   onCollapse = collapsed => {
     console.log(collapsed);
