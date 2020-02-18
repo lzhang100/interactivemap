@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import {Layout, Menu, Icon, Button} from "antd";
+import {Polygon} from "react-google-maps";
+import axios from "axios";
 import './css/app.css';
 import './map';
 import WrappedMap from "./map";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
+
+let mapPolygons = [];
+let buildingInfo = [];
+let hoverTimeout;
 
 class App extends Component {
 
@@ -17,10 +23,14 @@ class App extends Component {
     destState: '',
     travelModeState: '',
     modalState:false,
+    polygon: [],
+    info: [],
+    center:{lat: 37.3352,lng: -121.8811},
+    clickedPolygonIndex: -1
   };
 
   onCollapse = collapsed => {
-    console.log(collapsed);
+    //console.log(collapsed);
     this.setState({ collapsed });
   };
 
@@ -29,7 +39,12 @@ class App extends Component {
   };
 
   onClose =()=>{
-    this.setState({visible:false});
+    mapPolygons[this.state.clickedPolygonIndex].props.options.fillColor = "#36688F"
+
+    this.setState({
+      visible:false,
+      polygon: mapPolygons
+    });
   };
 
   showModal = () => {
@@ -66,16 +81,130 @@ class App extends Component {
     // console.log(this.state.destState)
   };
 
-  // onCancel =()=>{
-  //   this.setState({showDirections:false});
-  // };
+  hoverOverPolygon(name){
+    clearTimeout(hoverTimeout);
+    console.log("hover")
+    hoverTimeout = setTimeout(() => {
+      let polygonIndex;
+      for(var i = 0; i < buildingInfo.length; i++){
+        if(buildingInfo[i].desc === name){
+          //console.log(mapPolygonsData[i].name);
+          polygonIndex = i;
+          break;
+        }
+      }
+      mapPolygons[polygonIndex].props.options.fillColor = "#FF0000";
+
+      this.setState({
+        polygon: mapPolygons
+      });
+    },100);
+  }
+
+  hoverLeavePolygon(name){
+    clearTimeout(hoverTimeout);
+    console.log("leaving");
+    //console.log(name);
+    let polygonIndex;
+
+    for(var i = 0; i < buildingInfo.length; i++){
+      if(buildingInfo[i].desc === name){
+        polygonIndex = i;
+        break;
+      }
+    }
+    mapPolygons[polygonIndex].props.options.fillColor = "#36688F";
+
+    this.setState({
+      polygon: mapPolygons
+    });
+  }
+
+  clickPolygon=(name)=>{
+   console.log(name);
+   console.log(mapPolygons);
+   clearTimeout(hoverTimeout);
+    let polygonIndex;
+    let polygonData = buildingInfo.filter(function(item){
+      return item.desc === name;
+    })
+
+    for(var i = 0; i < buildingInfo.length; i++){
+      if(buildingInfo[i].desc === name){
+        polygonIndex = i;
+        break;
+      }
+    }
+    mapPolygons[polygonIndex].props.options.fillColor = "#FF0000";
+    this.setState({
+      info: polygonData[0],
+      polygon: mapPolygons,
+      visible: true, 
+      clickedPolygonIndex: polygonIndex,
+      // center: {lat: polygonData[0].center[0].lat, lng: polygonData[0].center[0].lng}
+    });
+  }
+
+  clickService=(name)=>{
+    this.clickPolygon(name);
+    // this.setState({
+    //   info: polygonData[0],
+    //   polygon: mapPolygons,
+    //   visible: true,
+    //   //polygon: mapPolygons,
+    //   // center: {lat: polygonData[0].center[0].lat, lng: polygonData[0].center[0].lng}
+    // })
+
+  }
+
+  /*Add sample info to make sure the drawer has some information from the start
+  Grab all the polygons json objects and store in mapPolygonData
+  Create the polygons and store in mapPolygonsData
+  clickPolygon is passed the name of the building that was clicked. Set states with info for the drawer, center the map with polygon, and make the drawer visible
+  clickPolygon is passed the name of the building that was clicked and center the map with polygon
+
+  */
+  componentDidMount(){
+    axios.get("http://www.localhost:4000/polygons").then(res => {
+        console.log(res.data);
+
+        res.data.forEach((building)=>{
+          Object.entries(building).forEach(([key, value])=>{
+            if (value.outer!== undefined & value.inner !== undefined){
+            buildingInfo.push(value);
+            }
+          })
+        })
+
+        var coords = [];
+        for(var i = 0; i < buildingInfo.length; i++){
+          coords.push(buildingInfo[i].outer);
+          coords.push(buildingInfo[i].inner);
+
+          mapPolygons.push(
+            <Polygon
+              paths= {coords}
+              options={{
+                strokeColor: '#36688F',
+                strokeOpacity: 0,
+                strokeWeight: 0,
+                fillColor: '#36688F',
+                fillOpacity: 0.38
+              }}
+              onMouseOut={this.hoverLeavePolygon.bind(this, buildingInfo[i].desc)}
+              onMouseMove={this.hoverOverPolygon.bind(this, buildingInfo[i].desc)}
+              onClick={this.clickPolygon.bind(this,buildingInfo[i].desc)}
+            />
+          )
+          coords = [];
+        }
+        this.setState({
+          polygon: mapPolygons
+        });
+    })
+  }
 
   render() {
-    // console.log('showDirections',this.state.showDirections);
-    //return <div>I'M READY TO USE THE BACK END APIS! :-)</div>;
-    // console.log('new directions in rerender')
-    // console.log(this.state.originState)
-    // console.log(this.state.destState)
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Header className= "header">
@@ -87,7 +216,7 @@ class App extends Component {
           <div className="logo"/>
           <Menu theme="light" defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1">
-              <span>Services</span>
+              <span>Explore Services</span>
             </Menu.Item>
             <SubMenu
               key="sub1"
@@ -98,10 +227,8 @@ class App extends Component {
                 </span>
               }
             >
-              <Menu.Item key="2">North Parking Garage</Menu.Item>
-              <Menu.Item key="3">South Parking Garage</Menu.Item>
-              <Menu.Item key="4">West Parking Garage</Menu.Item>
-              <Menu.Item key="5">Park & Ride Lot</Menu.Item>
+              <Menu.Item key="2" onClick={() => this.clickService("North Parking Garage")}>North Parking Garage</Menu.Item>
+              <Menu.Item key="3" onClick={() => this.clickService("South Parking Garage")}>South Parking Garage</Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub2"
@@ -112,6 +239,7 @@ class App extends Component {
                 </span>
               }
             >
+            <Menu.Item key="4" onClick={() => this.clickService("Student Union")}> Student Union</Menu.Item>
               {/* <Menu.Item key="6">Team 1</Menu.Item>
               <Menu.Item key="8">Team 2</Menu.Item> */}
             </SubMenu>
@@ -150,6 +278,9 @@ class App extends Component {
                 showModal={this.showModal}
                 hideModal={this.hideModal}
                 modalState={this.state.modalState}
+                mapPolygons = {this.state.polygon}
+                center = {this.state.center}
+                drawerInfos = {this.state.info}
               />
             <Footer style={{ textAlign: 'center' }}>SJSU Interactive Campus Map ©2019 Created by ICMap</Footer>
           </Content>
@@ -162,7 +293,7 @@ class App extends Component {
       // </Layout>
     );
   }
-  
+
 }
 
 export default App;
