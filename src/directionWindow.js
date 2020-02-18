@@ -54,7 +54,9 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
 
     render() {
       // console.log('render direction form button')
-      const { visible, onCancel, onCreate, onClear, form } = this.props;
+      const { visible, onCancel, onCreate, onClear, form, initialDest} = this.props;
+      console.log('destination in directions form')
+      console.log(initialDest)
       const { getFieldDecorator } = form;
       return (
         <Modal
@@ -89,7 +91,7 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
             <Form.Item label="To">
               {getFieldDecorator('destination',{
                 rules: [{ required: true, message: 'Please input the destination!' }],
-                initialValue: 'Charles W. Davidson College of Engineering',
+                initialValue: initialDest,
               })(<Input type="textarea" />)}
             </Form.Item>
             <Form.Item label="Travel Mode">
@@ -161,6 +163,8 @@ export default class DirectionWindow extends React.Component {
   };
 
   render() {
+    console.log('get destination from drawer')
+    console.log(this.props.initialDest)
     return (
       <div>
         <Button type="primary" onClick={this.props.showModal}>
@@ -172,8 +176,16 @@ export default class DirectionWindow extends React.Component {
           onCancel={this.handleCancel}
           onCreate={this.handleCreate}
           onClear={this.handleClear}
+          initialDest={this.props.initialDest}
         />
       </div>
     );
+  }
+
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.initialDest !== prevProps.initialDest) {
+      this.render()
+    }
   }
 }

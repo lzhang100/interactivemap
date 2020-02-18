@@ -35,11 +35,21 @@ function Map({closeDrawer, openDrawer, currentDrawerState, mapPolygons, drawerIn
       closable={true}
       onClose={closeDrawer}
       visible={currentDrawerState}
+      >
         
       {/* <h4>Charles W. Davidson College of Engineering</h4> */}
       {/* <img src={require(`${ drawerInfos.img }`)}></img> */}
       <p>{drawerInfos.desc}</p>
-      <DirectionWindow showDirections={showDirections} hideDirections={hideDirections} closeDrawer={closeDrawer} setDirections={setDirections} showModal={showModal} hideModal={hideModal} modalState={modalState}/>
+      <DirectionWindow 
+        showDirections={showDirections} 
+        hideDirections={hideDirections} 
+        closeDrawer={closeDrawer} 
+        setDirections={setDirections} 
+        showModal={showModal} 
+        hideModal={hideModal} 
+        modalState={modalState} 
+        initialDest={drawerInfos.desc}
+        />
       {/* <div>
            {drawerInfos.services.map(service => <li key={key2++}> {service} </li>)}
        </div> */}
