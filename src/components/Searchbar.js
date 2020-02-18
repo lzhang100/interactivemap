@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
 import '../css/Searchbar.css';
 
+import buildingsJSON from '../buildings.json';
+
 export class Searchbar extends Component {
-  state = {
-    suggestions: [],
-    text: ''
-  };
+  constructor(props) {
+    super(props);
+    this.items = buildingsJSON.map(b => b.desc);
+    this.state = {
+      suggestions: [],
+      text: ''
+    };
+  }
 
   // function that is called whenever input changes
   onTextChanged = e => {
     const value = e.target.value;
     let suggestions = [];
     if (value.length > 0) {
-      const regex = new RegExp(`^${value}`, 'i');
-      suggestions = this.props.buildings
-        .map(building => building.name)
-        .sort()
-        .filter(v => regex.test(v));
+      const regex = new RegExp([value], 'i');
+      suggestions = this.items.sort().filter(v => regex.test(v));
     }
     this.setState(() => ({ suggestions, text: value }));
   };
+
+  suggestionSelected(value) {
+    this.setState(() => ({ text: value, suggestions: [] }));
+  }
 
   renderSuggestions() {
     const { suggestions } = this.state;
@@ -35,9 +42,6 @@ export class Searchbar extends Component {
     );
   }
 
-  suggestionSelected(value) {
-    this.setState(() => ({ text: value, suggestions: [] }));
-  }
   render() {
     const { text } = this.state;
     return (
