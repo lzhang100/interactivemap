@@ -1592,7 +1592,7 @@ const mapStyles = {
 };
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyB6C4COk_CiplZhE0Mn4ZS76_zFoSUP1hU'
+  apiKey: '<API KEY HERE>'
 })(MapContainer);
 
 // let key = 0;
