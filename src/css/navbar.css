@@ -8,14 +8,14 @@
 
 .toolbarLeftHalf {
   width: 60%;
-  height: 100px;
+  height: 110px;
   float: left;
   display: flex;
   flex-direction: row;
 }
 
 .toolbarLogo {
-  width: 20%;
+  width: 15%;
   margin-left: 5%;
 }
 
@@ -26,8 +26,15 @@
 }
 
 .projectTitle {
-  width: 70%;
+  width: 80%;
 }
+
+.projectTitle img {
+  width: auto;
+  display: inline-block;
+  max-height: 100%;
+}
+
 .projectTitle h1 {
   font-size: 36px;
   color: white;

@@ -1,8 +1,8 @@
 import React from "react";
 import {GoogleMap, withScriptjs, withGoogleMap} from "react-google-maps";
 import {Drawer} from 'antd';
-import DirectionWindow from "./directionWindow";
-import DirectionsDisplay from './directionsDisplay'
+import DirectionWindow from "./components/directionWindow";
+import DirectionsDisplay from './components/directionsDisplay'
 // const { compose, withProps, lifecycle } = require("recompose");
 // import { compose, withProps, lifecycle } from "recompose"
 
