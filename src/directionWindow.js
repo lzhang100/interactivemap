@@ -55,8 +55,7 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
     render() {
       // console.log('render direction form button')
       const { visible, onCancel, onCreate, onClear, form, initialDest} = this.props;
-      console.log('destination in directions form')
-      console.log(initialDest)
+      console.log('Destination passed to directions form:' + initialDest)
       const { getFieldDecorator } = form;
       return (
         <Modal
@@ -182,10 +181,11 @@ export default class DirectionWindow extends React.Component {
     );
   }
 
-  componentDidUpdate(prevProps) {
-    // Typical usage (don't forget to compare props):
-    if (this.props.initialDest !== prevProps.initialDest) {
-      this.render()
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   // Typical usage (don't forget to compare props):
+  //   if (this.props.initialDest !== prevProps.initialDest) {
+  //     console.log('props diff, rerender direction window')
+  //     this.render()
+  //   }
+  // }
 }

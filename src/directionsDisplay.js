@@ -38,7 +38,7 @@ export default class DirectionsDisplay extends React.Component {
 
     componentDidUpdate(prevProps) {
       // Typical usage (don't forget to compare props):
-      if (this.props.origin !== prevProps.origin) {
+      if (this.props.origin !== prevProps.origin || this.props.origin !== prevProps.destination || this.props.origin !== prevProps.travelMode) {
         // console.log('origin changed, need to rerender, new origin', this.props.origin)
         const DirectionsService = new google.maps.DirectionsService();
         // console.log('send message');

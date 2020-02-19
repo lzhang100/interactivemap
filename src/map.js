@@ -10,12 +10,11 @@ let key = 0;
 
 function Map({closeDrawer, currentDrawerState, mapPolygons, drawerInfos, center, currentDirectionsState, showDirections, hideDirections, originState, destState, travelModeState, setDirections, showModal, hideModal, modalState}){
   //console.log(center);
-  console.log(drawerInfos);
-
+  //console.log(drawerInfos);
   //console.log(mapPolygons)
   //console.log(drawerInfos)
- //console.log(drawerInfos.img);
- //console.log(drawerInfos.services)
+  //console.log(drawerInfos.img);
+  //console.log(drawerInfos.services)
 
   return(
     <GoogleMap
@@ -47,7 +46,7 @@ function Map({closeDrawer, currentDrawerState, mapPolygons, drawerInfos, center,
         showModal={showModal} 
         hideModal={hideModal} 
         modalState={modalState} 
-        initialDest={drawerInfos.desc}
+        initialDest={'SJSU ' + drawerInfos.desc}
         />
       {/* <div>
            {drawerInfos.services.map(service => <li key={key2++}> {service} </li>)}
