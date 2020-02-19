@@ -1,7 +1,6 @@
 import React from "react";
-import {GoogleMap, withScriptjs, withGoogleMap, Polygon} from "react-google-maps";
+import {GoogleMap, withScriptjs, withGoogleMap} from "react-google-maps";
 import {Drawer} from 'antd';
-import axios from "axios";
 import DirectionWindow from "./directionWindow";
 import DirectionsDisplay from './directionsDisplay'
 // const { compose, withProps, lifecycle } = require("recompose");
@@ -9,7 +8,7 @@ import DirectionsDisplay from './directionsDisplay'
 
 let key = 0;
 
-function Map({closeDrawer, openDrawer, currentDrawerState, mapPolygons, drawerInfos, center, currentDirectionsState, showDirections, hideDirections, originState, destState, travelModeState, setDirections, showModal, hideModal, modalState}){
+function Map({closeDrawer, currentDrawerState, mapPolygons, drawerInfos, center, currentDirectionsState, showDirections, hideDirections, originState, destState, travelModeState, setDirections, showModal, hideModal, modalState}){
   //console.log(center);
   console.log(drawerInfos);
 

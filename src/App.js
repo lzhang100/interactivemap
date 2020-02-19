@@ -83,7 +83,7 @@ class App extends Component {
 
   hoverOverPolygon(name){
     clearTimeout(hoverTimeout);
-    console.log("hover")
+    // console.log("hover")
     hoverTimeout = setTimeout(() => {
       let polygonIndex;
       for(var i = 0; i < buildingInfo.length; i++){
@@ -103,7 +103,7 @@ class App extends Component {
 
   hoverLeavePolygon(name){
     clearTimeout(hoverTimeout);
-    console.log("leaving");
+    // console.log("leaving");
     //console.log(name);
     let polygonIndex;
 

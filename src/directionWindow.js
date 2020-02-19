@@ -163,8 +163,8 @@ export default class DirectionWindow extends React.Component {
   };
 
   render() {
-    console.log('get destination from drawer')
-    console.log(this.props.initialDest)
+    // console.log('get destination from drawer')
+    // console.log(this.props.initialDest)
     return (
       <div>
         <Button type="primary" onClick={this.props.showModal}>
