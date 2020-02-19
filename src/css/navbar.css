@@ -1,0 +1,39 @@
+.toolbarNavigation {
+  width: 100%;
+  height: 150px;
+  position: 'fixed';
+  color: white;
+  align-items: center;
+}
+
+.toolbarLeftHalf {
+  width: 60%;
+  height: 100px;
+  float: left;
+  display: flex;
+  flex-direction: row;
+}
+
+.toolbarLogo {
+  width: 20%;
+  margin-left: 5%;
+}
+
+.toolbarLogo img {
+  width: auto;
+  display: inline-block;
+  max-height: 100%;
+}
+
+.projectTitle {
+  width: 70%;
+}
+.projectTitle h1 {
+  font-size: 36px;
+  color: white;
+}
+
+.toolbarRightHalf {
+  width: 40%;
+  float: right;
+}

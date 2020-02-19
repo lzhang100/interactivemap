@@ -7,10 +7,12 @@ export class Searchbar extends Component {
   constructor(props) {
     super(props);
     this.items = buildingsJSON.map(b => b.desc);
+    this.buildings = buildingsJSON;
     this.state = {
       suggestions: [],
       text: ''
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   // function that is called whenever input changes
@@ -24,8 +26,10 @@ export class Searchbar extends Component {
     this.setState(() => ({ suggestions, text: value }));
   };
 
-  suggestionSelected(value) {
-    this.setState(() => ({ text: value, suggestions: [] }));
+  handleClick(building) {
+    const center = this.buildings.filter(b => b.desc === building)[0].center;
+    this.setState(() => ({ text: building, suggestions: [] }));
+    this.props.onSearchClicked(center);
   }
 
   renderSuggestions() {
@@ -35,8 +39,10 @@ export class Searchbar extends Component {
     }
     return (
       <ul>
-        {suggestions.map(building => (
-          <li onClick={() => this.suggestionSelected(building)}>{building}</li>
+        {suggestions.map((building, idx) => (
+          <li key={idx} onClick={() => this.handleClick(building)}>
+            {building}
+          </li>
         ))}
       </ul>
     );

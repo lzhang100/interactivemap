@@ -2,6 +2,7 @@
   {
     "acro": "ENG",
     "desc": "Davidson College of Engineering",
+    "center": { "lat": 37.337041, "lng": -121.881442 },
     "outer": [
       { "lat": 37.33639, "lng": -121.881953 },
       { "lat": 37.336457, "lng": -121.88181 },
@@ -89,6 +90,7 @@
   {
     "acro": "IS",
     "desc": "Industrial Studies Building",
+    "center": { "lat": 37.337594, "lng": -121.880611 },
     "outer": [
       { "lat": 37.336971, "lng": -121.880754 },
       { "lat": 37.337255, "lng": -121.880154 },
@@ -118,6 +120,7 @@
   {
     "acro": "ADM",
     "desc": "Administration",
+    "center": { "lat": 37.336797, "lng": -121.882807 },
     "outer": [
       { "lat": 37.336403, "lng": -121.883033 },
       { "lat": 37.336622, "lng": -121.882574 },
@@ -135,6 +138,7 @@
   {
     "acro": "CAR",
     "desc": "Career Center",
+    "center": { "lat": 37.336775, "lng": -121.883298 },
     "outer": [
       { "lat": 37.336873, "lng": -121.882761 },
       { "lat": 37.337065, "lng": -121.882905 },
@@ -150,6 +154,7 @@
   {
     "acro": "IRC",
     "desc": "Instructional Resource Center",
+    "center": { "lat": 37.336165, "lng": -121.8836 },
     "outer": [
       { "lat": 37.336087, "lng": -121.883652 },
       { "lat": 37.336144, "lng": -121.883698 },
@@ -166,6 +171,7 @@
   {
     "acro": "DMH",
     "desc": "Dudley Moorehead Hall",
+    "center": { "lat": 37.336254, "lng": -121.883998 },
     "outer": [
       { "lat": 37.336144, "lng": -121.883698 },
       { "lat": 37.336237, "lng": -121.883768 },
@@ -191,6 +197,7 @@
   {
     "acro": "HGH",
     "desc": "Hugh Gillis Hall",
+    "center": { "lat": 37.336006, "lng": -121.884453 },
     "outer": [
       { "lat": 37.335908, "lng": -121.884063 },
       { "lat": 37.335932, "lng": -121.884078 },
@@ -224,6 +231,7 @@
   {
     "acro": "MLK",
     "desc": "Marting Luther King Jr. Library",
+    "center": { "lat": 37.335509, "lng": -121.884999 },
     "outer": [
       { "lat": 37.335416, "lng": -121.884406 },
       { "lat": 37.335426, "lng": -121.884424 },
@@ -266,6 +274,7 @@
   {
     "acro": "CC",
     "desc": "Computer Center",
+    "center": { "lat": 37.335927, "lng": -121.883342 },
     "outer": [
       { "lat": 37.335787, "lng": -121.88342 },
       { "lat": 37.335949, "lng": -121.883109 },
@@ -279,6 +288,7 @@
   {
     "acro": "CL",
     "desc": "Clark Hall",
+    "center": { "lat": 37.336116, "lng": -121.88257 },
     "outer": [
       { "lat": 37.335845, "lng": -121.882656 },
       { "lat": 37.335961, "lng": -121.882414 },
@@ -319,6 +329,7 @@
   {
     "acro": "SU",
     "desc": "Student Union",
+    "center": { "lat": 37.336521, "lng": -121.880801 },
     "outer": [
       { "lat": 37.33599, "lng": -121.881615 },
       { "lat": 37.336104, "lng": -121.881359 },
@@ -380,6 +391,7 @@
   {
     "acro": "ART",
     "desc": "Art Building",
+    "center": { "lat": 37.335954, "lng": -121.879793 },
     "outer": [
       { "lat": 37.335736, "lng": -121.880052 },
       { "lat": 37.335823, "lng": -121.879872 },
@@ -413,6 +425,7 @@
   {
     "acro": "MUS",
     "desc": "Music Building",
+    "center": { "lat": 37.33562, "lng": -121.880846 },
     "outer": [
       { "lat": 37.335319, "lng": -121.881018 },
       { "lat": 37.335393, "lng": -121.880859 },
@@ -456,6 +469,7 @@
   {
     "acro": "BT",
     "desc": "Business Tower",
+    "center": { "lat": 37.337065, "lng": -121.878885 },
     "outer": [
       { "lat": 37.336888, "lng": -121.878952 },
       { "lat": 37.33704, "lng": -121.878633 },
@@ -467,6 +481,7 @@
   {
     "acro": "BBC",
     "desc": "Boccardo Business Center",
+    "center": { "lat": 37.336777, "lng": -121.878502 },
     "outer": [
       { "lat": 37.336321, "lng": -121.878893 },
       { "lat": 37.336601, "lng": -121.8783 },
@@ -480,6 +495,7 @@
   {
     "acro": "CCB",
     "desc": "Central Classroom Building",
+    "center": { "lat": 37.335556, "lng": -121.881824 },
     "outer": [
       { "lat": 37.335176, "lng": -121.881657 },
       { "lat": 37.335263, "lng": -121.88147 },
@@ -512,6 +528,7 @@
   {
     "acro": "DBH",
     "desc": "Dwight Bentel Hall",
+    "center": { "lat": 37.335034, "lng": -121.882658 },
     "outer": [
       { "lat": 37.335048, "lng": -121.882082 },
       { "lat": 37.335296, "lng": -121.88227 },
@@ -558,7 +575,8 @@
   },
   {
     "acro": "TH",
-    "desc": "",
+    "desc": "Tower Hall",
+    "center": { "lat": 37.3353, "lng": -121.883469 },
     "outer": [
       { "lat": 37.335131, "lng": -121.883135 },
       { "lat": 37.335218, "lng": -121.88295 },
@@ -628,6 +646,7 @@
   {
     "acro": "SPM",
     "desc": "Spartan Memorial",
+    "center": { "lat": 37.334224, "lng": -121.883316 },
     "outer": [
       { "lat": 37.334092, "lng": -121.883306 },
       { "lat": 37.334167, "lng": -121.88319 },
@@ -642,6 +661,7 @@
   {
     "acro": "SCI",
     "desc": "Science Building",
+    "center": { "lat": 37.334634, "lng": -121.884671 },
     "outer": [
       { "lat": 37.334393, "lng": -121.884491 },
       { "lat": 37.334458, "lng": -121.88435 },
@@ -672,6 +692,7 @@
   {
     "acro": "WSQ",
     "desc": "Washington Square Building",
+    "center": { "lat": 37.334161, "lng": -121.884258 },
     "outer": [
       { "lat": 37.334393, "lng": -121.884491 },
       { "lat": 37.334458, "lng": -121.88435 },
@@ -695,6 +716,7 @@
   {
     "acro": "YUH",
     "desc": "Yoshihiro Uchida Hall",
+    "center": { "lat": 37.333513, "lng": -121.883741 },
     "outer": [
       { "lat": 37.333322, "lng": -121.883757 },
       { "lat": 37.33342, "lng": -121.883554 },
@@ -738,6 +760,7 @@
   {
     "acro": "FOB",
     "desc": "Faculty Office Building",
+    "center": { "lat": 37.334602, "lng": -121.882651 },
     "outer": [
       { "lat": 37.334401, "lng": -121.882874 },
       { "lat": 37.334419, "lng": -121.882838 },
@@ -758,6 +781,7 @@
   {
     "acro": "SPXC",
     "desc": "Spartan Complex Central",
+    "center": { "lat": 37.334139, "lng": -121.882673 },
     "outer": [
       { "lat": 37.333674, "lng": -121.882998 },
       { "lat": 37.333786, "lng": -121.882766 },
@@ -789,6 +813,7 @@
   {
     "acro": "SPXE",
     "desc": "Spartan Complex East",
+    "center": { "lat": 37.334474, "lng": -121.881843 },
     "outer": [
       { "lat": 37.334235, "lng": -121.881871 },
       { "lat": 37.334529, "lng": -121.882091 },
@@ -810,6 +835,7 @@
   {
     "acro": "SWC",
     "desc": "Student Wellness Center",
+    "center": { "lat": 37.334771, "lng": -121.881303 },
     "outer": [
       { "lat": 37.334488, "lng": -121.881341 },
       { "lat": 37.334612, "lng": -121.881077 },
@@ -825,6 +851,7 @@
   {
     "acro": "EC",
     "desc": "Event Center",
+    "center": { "lat": 37.33501, "lng": -121.88055 },
     "outer": [
       { "lat": 37.334771, "lng": -121.880706 },
       { "lat": 37.334681, "lng": -121.88064 },
@@ -877,6 +904,7 @@
   {
     "acro": "HB",
     "desc": "Health Building",
+    "center": { "lat": 37.335718, "lng": -121.879138 },
     "outer": [
       { "lat": 37.335488, "lng": -121.879117 },
       { "lat": 37.335596, "lng": -121.878906 },
@@ -888,6 +916,7 @@
   {
     "acro": "CP",
     "desc": "Cooling Plant",
+    "center": { "lat": 37.336151, "lng": -121.878369 },
     "outer": [
       { "lat": 37.335827, "lng": -121.878514 },
       { "lat": 37.33611, "lng": -121.877947 },
@@ -899,6 +928,7 @@
   {
     "acro": "CVA",
     "desc": "Campus Village A",
+    "center": { "lat": 37.334569, "lng": -121.87758 },
     "outer": [
       { "lat": 37.334213, "lng": -121.877469 },
       { "lat": 37.334246, "lng": -121.87739 },
@@ -952,6 +982,7 @@
   {
     "acro": "CVB",
     "desc": "Campus Village B",
+    "center": { "lat": 37.335008, "lng": -121.877567 },
     "outer": [
       { "lat": 37.33447, "lng": -121.876829 },
       { "lat": 37.334507, "lng": -121.876723 },
@@ -1041,6 +1072,7 @@
   {
     "acro": "CVC",
     "desc": "Campus Village C",
+    "center": { "lat": 37.335244, "lng": -121.878128 },
     "outer": [
       { "lat": 37.334993, "lng": -121.878039 },
       { "lat": 37.335073, "lng": -121.877869 },
@@ -1071,6 +1103,7 @@
   {
     "acro": "JWH",
     "desc": "Joe West Housing",
+    "center": { "lat": 37.33429, "lng": -121.878065 },
     "outer": [
       { "lat": 37.334019, "lng": -121.87804 },
       { "lat": 37.334039, "lng": -121.877997 },
@@ -1114,6 +1147,7 @@
   {
     "acro": "DC",
     "desc": "Dining Commons",
+    "center": { "lat": 37.33407, "lng": -121.878502 },
     "outer": [
       { "lat": 37.333756, "lng": -121.878549 },
       { "lat": 37.333957, "lng": -121.878133 },
@@ -1129,6 +1163,7 @@
   {
     "acro": "CV2",
     "desc": "Campus Village 2",
+    "center": { "lat": 37.334845, "lng": -121.878524 },
     "outer": [
       { "lat": 37.334643, "lng": -121.878554 },
       { "lat": 37.334781, "lng": -121.878259 },
@@ -1146,6 +1181,7 @@
   {
     "acro": "WSH",
     "desc": "Washburn Hall",
+    "center": { "lat": 37.335243, "lng": -121.878108 },
     "outer": [
       { "lat": 37.333423, "lng": -121.879286 },
       { "lat": 37.333597, "lng": -121.879237 },
@@ -1175,6 +1211,7 @@
   {
     "acro": "SRAC",
     "desc": "Spartan Recreation and Aquatic Center",
+    "center": { "lat": 37.334435, "lng": -121.880433 },
     "outer": [
       { "lat": 37.333848, "lng": -121.880042 },
       { "lat": 37.334493, "lng": -121.878617 },
@@ -1188,6 +1225,7 @@
   {
     "acro": "UPD",
     "desc": "University Police Department",
+    "center": { "lat": 37.333086, "lng": -121.879866 },
     "outer": [
       { "lat": 37.333095, "lng": -121.879844 },
       { "lat": 37.333691, "lng": -121.880314 },
@@ -1201,6 +1239,7 @@
   {
     "acro": "SPG",
     "desc": "South Parking Garage",
+    "center": { "lat": 37.333003, "lng": -121.880888 },
     "outer": [
       { "lat": 37.333729, "lng": -121.880411 },
       { "lat": 37.333757, "lng": -121.880434 },
@@ -1229,6 +1268,7 @@
   {
     "acro": "MH",
     "desc": "MacQuarrie Hall",
+    "center": { "lat": 37.333557, "lng": -121.881797 },
     "outer": [
       { "lat": 37.333245, "lng": -121.881808 },
       { "lat": 37.333307, "lng": -121.881626 },
@@ -1252,6 +1292,7 @@
   {
     "acro": "SH",
     "desc": "Sweeney Hall",
+    "center": { "lat": 37.333767, "lng": -121.8809 },
     "outer": [
       { "lat": 37.333538, "lng": -121.881151 },
       { "lat": 37.333558, "lng": -121.881106 },
@@ -1294,6 +1335,7 @@
   {
     "acro": "DH",
     "desc": "Duncan Hall",
+    "center": { "lat": 37.332611, "lng": -121.881896 },
     "outer": [
       { "lat": 37.332041, "lng": -121.882377 },
       { "lat": 37.332438, "lng": -121.881545 },
@@ -1310,6 +1352,7 @@
   {
     "acro": "WPG",
     "desc": "West Parking Garage",
+    "center": { "lat": 37.332382, "lng": -121.883027 },
     "outer": [
       { "lat": 37.331689, "lng": -121.882725 },
       { "lat": 37.331856, "lng": -121.882355 },
@@ -1331,6 +1374,7 @@
   {
     "acro": "NPG",
     "desc": "North Parking Garage",
+    "center": { "lat": 37.339332, "lng": -121.880752 },
     "outer": [
       { "lat": 37.338599, "lng": -121.880712 },
       { "lat": 37.338944, "lng": -121.879989 },
@@ -1383,6 +1427,7 @@
   {
     "acro": "CYA",
     "desc": "Corporation Yard A",
+    "center": { "lat": 37.338199, "lng": -121.880195 },
     "outer": [
       { "lat": 37.337964, "lng": -121.880237 },
       { "lat": 37.337984, "lng": -121.880191 },
@@ -1400,6 +1445,7 @@
   {
     "acro": "CYB",
     "desc": "Corporation Yard B",
+    "center": { "lat": 37.3381, "lng": -121.879648 },
     "outer": [
       { "lat": 37.337749, "lng": -121.880075 },
       { "lat": 37.338111, "lng": -121.879318 },
@@ -1423,6 +1469,7 @@
   {
     "acro": "ATM",
     "desc": "ATM Machines",
+    "center": { "lat": 37.337332, "lng": -121.879752 },
     "outer": [
       { "lat": 37.337307, "lng": -121.87981 },
       { "lat": 37.337286, "lng": -121.879705 },
@@ -1435,6 +1482,7 @@
   {
     "acro": "MODF",
     "desc": "Modular F",
+    "center": { "lat": 37.33711, "lng": -121.87953 },
     "outer": [
       { "lat": 37.337, "lng": -121.879545 },
       { "lat": 37.337086, "lng": -121.879372 },
@@ -1450,6 +1498,7 @@
   {
     "acro": "MODAB",
     "desc": "Mod A and Mod B",
+    "center": { "lat": 37.337358, "lng": -121.879362 },
     "outer": [
       { "lat": 37.337227, "lng": -121.879342 },
       { "lat": 37.337282, "lng": -121.879222 },
