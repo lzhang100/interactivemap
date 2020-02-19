@@ -182,10 +182,12 @@ export default class DirectionWindow extends React.Component {
   }
 
   // componentDidUpdate(prevProps) {
-  //   // Typical usage (don't forget to compare props):
+  //   console.log('direction component update')
+  //   console.log(this.props.initialDest)
+  //   console.log(prevProps.initialDest)
   //   if (this.props.initialDest !== prevProps.initialDest) {
-  //     console.log('props diff, rerender direction window')
-  //     this.render()
+  //     console.log('props diff')
+  //     this.setState({ destination: this.props.initialDest });
   //   }
   // }
 }

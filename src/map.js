@@ -26,7 +26,13 @@ function Map({closeDrawer, currentDrawerState, mapPolygons, drawerInfos, center,
       <div>
            {mapPolygons.map(mapPolygon => <div key={key++}> {mapPolygon} </div>)}
       </div>
-      <DirectionsDisplay visible={currentDirectionsState} origin={originState} destination={destState} travelMode={travelModeState} />
+
+      <DirectionsDisplay 
+        visible={currentDirectionsState} 
+        origin={originState} 
+        destination={destState} 
+        travelMode={travelModeState} />
+
       <Drawer className="drawer"
       title={drawerInfos.desc}
       placement="left"
