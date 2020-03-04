@@ -1,14 +1,15 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import '../css/app.css'
-import { Button, Icon, Modal, Form, Input, Radio, Row, Col} from 'antd';
-// import Searchbar from './Searchbar.js';
+import { Button, Icon, Modal, Form, Input, Radio, Row, Col, AutoComplete} from 'antd';
+import buildingsJSON from '../buildings.json';
 
 const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
   // eslint-disable-next-line
   class extends React.Component {
     constructor(props) {
       super(props);
+      this.options = buildingsJSON.map(b => b.desc);
       this.state = {
         origin: '',
         destination: '',
@@ -78,9 +79,14 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
               <Row gutter={3}>
               <Col span={22}>
                 {getFieldDecorator('origin', {
-                  rules: [{ required: true, message: 'Please input the start location!' }],
+                  rules: [{ required: true, message: 'Please input origin!' }],
                 })(
-                  <Input type="textarea" id='origin'/>
+                  <AutoComplete
+                    /* dataSource={this.origin_options} */
+                    dataSource={this.options}
+                    placeholder="Please input origin here"
+                    filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}                   
+                  />
                   )}
               </Col>
               <Col span={2}>
