@@ -1,6 +1,8 @@
 /*global google*/
 import React from 'react';
 import {DirectionsRenderer} from "react-google-maps";
+import buildingsJSON from '../buildings.json';
+import {message } from 'antd';
 
 
 export default class DirectionsDisplay extends React.Component {
@@ -46,12 +48,18 @@ export default class DirectionsDisplay extends React.Component {
         // console.log('sendoriginState,', this.props.origin)
         // console.log('senddestState,', this.props.destination)
         console.log(this.props.travelMode)
+        console.log('origin in form', this.props.origin)
+        var origin_coords = buildingsJSON.filter(b => b.desc === this.props.origin);
+        var origin = ((origin_coords.length === 0) ? this.props.origin : origin_coords[0].center.lat.toString() + ', ' + origin_coords[0].center.lng.toString());
+        console.log('origin send to google', origin)
+
+        console.log('destination in form', this.props.destination)
+        var dest_coords = buildingsJSON.filter(b => b.desc === this.props.destination);
+        var dest = ((dest_coords.length === 0) ? this.props.destination : dest_coords[0].center.lat.toString() + ', ' + dest_coords[0].center.lng.toString());
+        console.log('dest send to google', dest)
         DirectionsService.route({
-          // origin: new google.maps.LatLng(37.336236, -121.881530),
-          origin: {query: this.props.origin},
-          // destination: new google.maps.LatLng(37.334129, -121.884316),
-          destination: {query: this.props.destination},
-          // travelMode: google.maps.TravelMode.WALKING,
+          origin: {query: origin},
+          destination: {query: dest},
           travelMode: this.props.travelMode,
         }, (response, status) => {
           if (status === google.maps.DirectionsStatus.OK) {
@@ -59,6 +67,9 @@ export default class DirectionsDisplay extends React.Component {
             this.setState({display: true});
           } else {
             console.error(`error fetching directions ${response}`);
+            this.setState({directions: null});
+            this.setState({display: false});
+            message.error('Error fetching directions, please enter correct destination/origin', 7);
           }
         });
     }
