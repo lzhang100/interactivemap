@@ -83,7 +83,7 @@ function Map({
         showModal={showModal} 
         hideModal={hideModal} 
         modalState={modalState}
-        initialDest={drawerInfos.desc}
+        initialDest={drawerInfos.name}
         />
       {/* <div>
            {drawerInfos.services.map(service => <li key={key2++}> {service} </li>)}
