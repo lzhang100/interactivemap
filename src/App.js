@@ -147,7 +147,7 @@ class App extends Component {
         break;
       }
     }
-    console.log("Herre:",polygonData[0])
+
     mapPolygons[polygonIndex].props.options.fillColor = "#FF0000";
     this.setState({
       info: polygonData[0],

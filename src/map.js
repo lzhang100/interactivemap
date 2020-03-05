@@ -29,7 +29,7 @@ function Map({
   //console.log(zoom);
   //console.log(drawerInfos);
   //console.log(mapPolygons)
-  console.log(drawerInfos)
+  //console.log(drawerInfos)
   //console.log(drawerInfos.img);
   //console.log(drawerInfos.services)
 
