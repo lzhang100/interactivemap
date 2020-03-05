@@ -101,7 +101,15 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
               {getFieldDecorator('destination',{
                 rules: [{ required: true, message: 'Please input the destination!' }],
                 initialValue: initialDest,
-              })(<Input type="textarea" />)}
+              })(
+                /* <Input type="textarea" /> */
+                <AutoComplete
+                    /* dataSource={this.origin_options} */
+                    dataSource={this.options}
+                    placeholder="Please input origin here"
+                    filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}                   
+                  />
+                )}
             </Form.Item>
             <Form.Item label="Travel Mode">
               {getFieldDecorator('travelMode', {
