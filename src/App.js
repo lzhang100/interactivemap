@@ -448,7 +448,8 @@ class App extends Component {
             </div>
             {/* <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div> */}
             <WrappedMap
-              googleMapURL={`api key`}
+              googleMapURL= {`API Key`}              
+              loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%` }} />}
               mapElement={<div style={{ height: `100%` }} />}
               closeDrawer={this.onClose}
