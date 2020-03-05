@@ -4,6 +4,7 @@
   position: 'fixed';
   color: white;
   align-items: center;
+  margin-top: 1%;
 }
 
 .toolbarLeftHalf {
@@ -26,7 +27,8 @@
 }
 
 .projectTitle {
-  width: 80%;
+  width: 85%;
+  margin-left: 7%;
 }
 
 .projectTitle img {
@@ -38,9 +40,16 @@
 .projectTitle h1 {
   font-size: 36px;
   color: white;
+  margin: 0;
+}
+.projectTitle h2 {
+  font-size: 36px;
+  color: white;
+  margin: 0;
 }
 
 .toolbarRightHalf {
   width: 40%;
   float: right;
+  padding-right: 5%;
 }
