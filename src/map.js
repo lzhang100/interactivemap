@@ -61,7 +61,7 @@ function Map({
         travelMode={travelModeState} />
 
       <Drawer className="drawer"
-      title={drawerInfos.desc}
+      title={drawerInfos.name}
       placement="left"
       closable={true}
       onClose={closeDrawer}
@@ -69,8 +69,12 @@ function Map({
       >
         
       {/* <h4>Charles W. Davidson College of Engineering</h4> */}
-      {/* <img src={require(`${ drawerInfos.img }`)}></img> */}
-      <p>{drawerInfos.desc}</p>
+      <img src={require(`${drawerInfos.img}`)}></img>
+      <p>About {drawerInfos.name}:</p>
+      <p>{drawerInfos["building desc"]}</p>
+      {/* <p>Service Description:</p> */}
+      <p>{drawerInfos["service desc"]}</p>
+
       <DirectionWindow 
         showDirections={showDirections} 
         hideDirections={hideDirections} 
@@ -78,7 +82,7 @@ function Map({
         setDirections={setDirections} 
         showModal={showModal} 
         hideModal={hideModal} 
-        modalState={modalState} 
+        modalState={modalState}
         initialDest={drawerInfos.desc}
         />
       {/* <div>
