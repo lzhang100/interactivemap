@@ -69,6 +69,7 @@ function Map({
       >
         
       {/* <h4>Charles W. Davidson College of Engineering</h4> */}
+      {/* eslint-disable-next-line */}
       <img src={require(`${drawerInfos.img}`)}></img>
       <p>About {drawerInfos.name}:</p>
       <p>{drawerInfos["building desc"]}</p>
