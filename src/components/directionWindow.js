@@ -1,6 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import '../css/app.css'
+import '../css/app.css';
 import { Button, Icon, Modal, Form, Input, Radio, Row, Col } from 'antd';
 
 const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
@@ -10,98 +10,131 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
       super(props);
       this.state = {
         origin: '',
-        destination: '',
+        destination: ''
       };
     }
 
-    handleClick = () =>{
+    handleClick = () => {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          var currLoc = pos.lat + ', ' + pos.lng
-          console.log('get geolocation', pos)
-          console.log('get geolocation, lat:', String(pos.lat), ' lon:', String(pos.lng))
-          // currLoc = 'Current Location: Latitude:' + String(pos.lat) + ' Lontitude:' + String(pos.lng)
-          document.getElementById('currLoc').innerHTML = 'Current Location: Latitude:' + String(pos.lat) + ' Lontitude:' + String(pos.lng)
-          console.log('change field value')
-          this.props.form.setFieldsValue({
-            origin: currLoc,
-          });
-          console.log(pos)
-          // map.setCenter(pos);
-        }.bind(this), function() {
-          this.handleLocationError(true);
-        });
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var currLoc = pos.lat + ', ' + pos.lng;
+            console.log('get geolocation', pos);
+            console.log(
+              'get geolocation, lat:',
+              String(pos.lat),
+              ' lon:',
+              String(pos.lng)
+            );
+            // currLoc = 'Current Location: Latitude:' + String(pos.lat) + ' Lontitude:' + String(pos.lng)
+            document.getElementById('currLoc').innerHTML =
+              'Current Location: Latitude:' +
+              String(pos.lat) +
+              ' Lontitude:' +
+              String(pos.lng);
+            console.log('change field value');
+            this.props.form.setFieldsValue({
+              origin: currLoc
+            });
+            console.log(pos);
+            // map.setCenter(pos);
+          }.bind(this),
+          function() {
+            this.handleLocationError(true);
+          }
+        );
       } else {
         // Browser doesn't support Geolocation
         this.handleLocationError(false);
       }
-    }
+    };
 
-    handleLocationError = (browserHasGeolocation)=> {
-      console.log(browserHasGeolocation ?
-        'Error: The Geolocation service failed.' :
-        'Error: Your browser doesn\'t support geolocation.')
-      // infoWindow.setPosition(pos);
-      // infoWindow.setContent(browserHasGeolocation ?
-      //                       'Error: The Geolocation service failed.' :
-      //                       'Error: Your browser doesn\'t support geolocation.');
-      // infoWindow.open(map);
-    }
+    handleLocationError = browserHasGeolocation => {
+      console.log(
+        browserHasGeolocation
+          ? 'Error: The Geolocation service failed.'
+          : "Error: Your browser doesn't support geolocation."
+      );
+    };
 
     render() {
-      // console.log('render direction form button')
-      const { visible, onCancel, onCreate, onClear, form, initialDest} = this.props;
-      console.log('Destination passed to directions form:' + initialDest)
+      const {
+        visible,
+        onCancel,
+        onCreate,
+        onClear,
+        form,
+        initialDest
+      } = this.props;
       const { getFieldDecorator } = form;
       return (
         <Modal
           visible={visible}
-          title="Get Directions"
+          title='Get Directions'
           onCancel={onCancel}
           footer={[
-          <Button key='onclear' type="danger" onClick={onClear}> Clear</Button>,
-          <Button key='oncreate'type="primary" onClick={onCreate}> Go</Button>,
-          <Button key='onexit' type="default" icon="fullscreen-exit" onClick={onCancel}> Map</Button>,
+            <Button key='onclear' type='danger' onClick={onClear}>
+              {' '}
+              Clear
+            </Button>,
+            <Button key='oncreate' type='primary' onClick={onCreate}>
+              {' '}
+              Go
+            </Button>,
+            <Button
+              key='onexit'
+              type='default'
+              icon='fullscreen-exit'
+              onClick={onCancel}
+            >
+              {' '}
+              Map
+            </Button>
           ]}
-          closeIcon={
-            <Icon type="fullscreen-exit" />
-          }
+          closeIcon={<Icon type='fullscreen-exit' />}
         >
-          <Form layout="vertical">
-            <Form.Item label="From">
+          <Form layout='vertical'>
+            <Form.Item label='From'>
               <Row gutter={3}>
-              <Col span={22}>
-                {getFieldDecorator('origin', {
-                  rules: [{ required: true, message: 'Please input the start location!' }],
-                })(<Input type="textarea" id='origin'/>)}
-              </Col>
-              <Col span={2}>
-                <Button icon="environment" onClick={this.handleClick}>
-                  {/* Get current location */}
-                </Button>
-              </Col>
-            </Row>
-            <div id = 'currLoc'></div>
+                <Col span={22}>
+                  {getFieldDecorator('origin', {
+                    rules: [
+                      {
+                        required: true,
+                        message: 'Please input the start location!'
+                      }
+                    ]
+                  })(<Input type='textarea' id='origin' />)}
+                </Col>
+                <Col span={2}>
+                  <Button icon='environment' onClick={this.handleClick}>
+                    {/* Get current location */}
+                  </Button>
+                </Col>
+              </Row>
+              <div id='currLoc'></div>
             </Form.Item>
-            <Form.Item label="To">
-              {getFieldDecorator('destination',{
-                rules: [{ required: true, message: 'Please input the destination!' }],
-                initialValue: initialDest,
-              })(<Input type="textarea" />)}
+            <Form.Item label='To'>
+              {getFieldDecorator('destination', {
+                rules: [
+                  { required: true, message: 'Please input the destination!' }
+                ],
+                initialValue: initialDest
+              })(<Input type='textarea' />)}
             </Form.Item>
-            <Form.Item label="Travel Mode">
+            <Form.Item label='Travel Mode'>
               {getFieldDecorator('travelMode', {
-                initialValue: 'WALKING',
+                initialValue: 'WALKING'
               })(
-                <Radio.Group buttonStyle="solid">
-                  <Radio.Button value="DRIVING">Driving</Radio.Button>
-                  <Radio.Button value="TRANSIT">Transit</Radio.Button>
-                  <Radio.Button value="WALKING">Walking</Radio.Button>
-                </Radio.Group>,
+                <Radio.Group buttonStyle='solid'>
+                  <Radio.Button value='DRIVING'>Driving</Radio.Button>
+                  <Radio.Button value='TRANSIT'>Transit</Radio.Button>
+                  <Radio.Button value='WALKING'>Walking</Radio.Button>
+                </Radio.Group>
               )}
             </Form.Item>
           </Form>
@@ -109,7 +142,7 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
         </Modal>
       );
     }
-  },
+  }
 );
 
 export default class DirectionWindow extends React.Component {
@@ -126,17 +159,17 @@ export default class DirectionWindow extends React.Component {
   // };
 
   handleCancel = () => {
-    console.log('handle cancel')
+    console.log('handle cancel');
     // this.setState({ visible: false });
     this.props.hideModal();
   };
 
   handleClear = () => {
-    console.log('handle clear')
+    console.log('handle clear');
     const { form } = this.formRef.props;
     form.resetFields();
-    document.getElementById('directionPanel').innerHTML = "";
-    document.getElementById('currLoc').innerHTML = "";
+    document.getElementById('directionPanel').innerHTML = '';
+    document.getElementById('currLoc').innerHTML = '';
     this.props.hideDirections();
     // this.setState({ visible: false });
     this.props.hideModal();
@@ -144,7 +177,7 @@ export default class DirectionWindow extends React.Component {
   };
 
   handleCreate = () => {
-    console.log('handle create')
+    console.log('handle create');
     const { form } = this.formRef.props;
     form.validateFields((err, values) => {
       if (err) {
@@ -153,7 +186,11 @@ export default class DirectionWindow extends React.Component {
       console.log('Received values of form: ', values);
       this.props.showDirections();
       this.props.closeDrawer();
-      this.props.setDirections(values.origin, values.destination, values.travelMode)
+      this.props.setDirections(
+        values.origin,
+        values.destination,
+        values.travelMode
+      );
     });
   };
 
@@ -166,7 +203,7 @@ export default class DirectionWindow extends React.Component {
     // console.log(this.props.initialDest)
     return (
       <div>
-        <Button type="primary" onClick={this.props.showModal}>
+        <Button type='primary' onClick={this.props.showModal}>
           Get Directions
         </Button>
         <DirectionCreateForm

@@ -1,12 +1,13 @@
-import React, { Component } from "react";
-import { Layout, Menu, Icon, Button } from "antd";
-import { Polygon } from "react-google-maps";
-import axios from "axios";
+import React, { Component } from 'react';
+import { Layout, Menu, Icon, Button } from 'antd';
+import { Polygon } from 'react-google-maps';
+import axios from 'axios';
 import './css/app.css';
 import './css/navbar.css';
 import './map';
-import WrappedMap from "./map";
+import WrappedMap from './map';
 import Searchbar from './components/Searchbar.js';
+import Searchbar2 from './components/Searchbar2.js';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -50,7 +51,8 @@ class App extends Component {
   };
 
   onClose = () => {
-    mapPolygons[this.state.clickedPolygonIndex].props.options.fillColor = "#36688F"
+    mapPolygons[this.state.clickedPolygonIndex].props.options.fillColor =
+      '#36688F';
 
     this.setState({
       visible: false,
@@ -59,53 +61,43 @@ class App extends Component {
   };
 
   showModal = () => {
-    console.log('change to showModal')
+    console.log('change to showModal');
     this.setState({ modalState: true });
   };
 
   hideModal = () => {
-    console.log('change to hideModal')
+    console.log('change to hideModal');
     this.setState({ modalState: false });
   };
 
   showDirections = () => {
-    console.log('change to showDirections')
+    console.log('change to showDirections');
     this.setState({ showDirections: true });
   };
 
   hideDirections = () => {
-    console.log('change to hideDirections')
+    console.log('change to hideDirections');
     this.setState({ showDirections: false });
   };
 
   setDirections = (origin, dest, travelMode) => {
-    // console.log('original directions')
-    // console.log(this.state.originState)
-    // console.log(this.state.destState)
-    // console.log('passed in origin:', origin)
-    // console.log('passed in dest:', typeof dest, dest)
     this.setState({ originState: origin });
     this.setState({ destState: dest });
     this.setState({ travelModeState: travelMode });
-    // console.log('new directions')
-    // console.log(this.state.originState)
-    // console.log(this.state.destState)
   };
 
   hoverOverPolygon(name) {
     clearTimeout(hoverTimeout);
-    // console.log("hover")
     hoverTimeout = setTimeout(() => {
       let polygonIndex;
       for (var i = 0; i < buildingInfo.length; i++) {
         if (buildingInfo[i].desc === name) {
-          //console.log(mapPolygonsData[i].name);
           polygonIndex = i;
           break;
         }
       }
 
-      mapPolygons[polygonIndex].props.options.fillColor = "#FF0000";
+      mapPolygons[polygonIndex].props.options.fillColor = '#FF0000';
 
       this.setState({
         polygon: mapPolygons
@@ -115,8 +107,6 @@ class App extends Component {
 
   hoverLeavePolygon(name) {
     clearTimeout(hoverTimeout);
-    // console.log("leaving");
-    //console.log(name);
     let polygonIndex;
 
     for (var i = 0; i < buildingInfo.length; i++) {
@@ -125,21 +115,19 @@ class App extends Component {
         break;
       }
     }
-    mapPolygons[polygonIndex].props.options.fillColor = "#36688F";
+    mapPolygons[polygonIndex].props.options.fillColor = '#36688F';
 
     this.setState({
       polygon: mapPolygons
     });
   }
 
-  clickPolygon = (name) => {
-    console.log(name);
-    console.log(mapPolygons);
+  clickPolygon = name => {
     clearTimeout(hoverTimeout);
     let polygonIndex;
-    let polygonData = buildingInfo.filter(function (item) {
+    let polygonData = buildingInfo.filter(function(item) {
       return item.desc === name;
-    })
+    });
 
     for (var i = 0; i < buildingInfo.length; i++) {
       if (buildingInfo[i].desc === name) {
@@ -147,17 +135,39 @@ class App extends Component {
         break;
       }
     }
-    mapPolygons[polygonIndex].props.options.fillColor = "#FF0000";
+    mapPolygons[polygonIndex].props.options.fillColor = '#FF0000';
     this.setState({
       info: polygonData[0],
       polygon: mapPolygons,
       visible: true,
       clickedPolygonIndex: polygonIndex,
-      // center: {lat: polygonData[0].center[0].lat, lng: polygonData[0].center[0].lng}
+      currHovering: true
     });
-  }
+  };
 
-  clickService = (name) => {
+  // clickPolygon2 = name => {
+  //   clearTimeout(hoverTimeout);
+  //   let polygonIndex;
+  //   let polygonData = buildingInfo.filter(function(item) {
+  //     return item.desc === name;
+  //   });
+
+  //   for (var i = 0; i < buildingInfo.length; i++) {
+  //     if (buildingInfo[i].desc === name) {
+  //       polygonIndex = i;
+  //       break;
+  //     }
+  //   }
+  //   mapPolygons[polygonIndex].props.options.fillColor = '#FF0000';
+  //   this.setState({
+  //     info: polygonData[0],
+  //     polygon: mapPolygons,
+  //     visible: false,
+  //     clickedPolygonIndex: polygonIndex
+  //   });
+  // };
+
+  clickService = name => {
     this.clickPolygon(name);
     // this.setState({
     //   info: polygonData[0],
@@ -166,8 +176,7 @@ class App extends Component {
     //   //polygon: mapPolygons,
     //   // center: {lat: polygonData[0].center[0].lat, lng: polygonData[0].center[0].lng}
     // })
-
-  }
+  };
   /*Add sample info to make sure the drawer has some information from the start
   Grab all the polygons json objects and store in mapPolygonData
   Create the polygons and store in mapPolygonsData
@@ -177,8 +186,6 @@ class App extends Component {
   */
   componentDidMount() {
     axios.get('http://www.localhost:4000/polygons').then(res => {
-      // console.log(res.data);
-
       res.data.forEach(building => {
         Object.entries(building).forEach(([key, value]) => {
           if ((value.outer !== undefined) & (value.inner !== undefined)) {
@@ -219,27 +226,26 @@ class App extends Component {
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Header className='header'>
-          {/* <img
-            src={require('./css/logo_sjsu.png')}
-            style={{ width: '150px' }}
-            alt='SJSU'
-          ></img>
-          <img src={require('./css/logo2_sjsu.png')} alt='SJSU'></img>
-          <Searchbar /> */}
           <div className='toolbarNavigation'>
             <div className='toolbarLeftHalf'>
               <div className='toolbarLogo'>
-                <img src={require('./css/logo_sjsu.png')} /*style={{ width: '120px', height: '120px' }}*/ alt="SJSU"></img>
+                <img
+                  src={require('./css/sjsuLogo.png')}
+                  style={{ width: 'auto' }}
+                  alt='SJSU'
+                ></img>
               </div>
               <div className='projectTitle'>
-                <img src={require('./css/logo2_sjsu.png')} /*style={{ width: '400px', height: '100px' }}*/ alt="SJSU"></img>
+                <h1>San José State University</h1>
+                <h2>Interactive Campus Map</h2>
               </div>
             </div>
             <div className='toolbarRightHalf'>
               <div className='autoCompleteText'>
-                <Searchbar
+                <Searchbar2
                   center={this.state.center}
                   onSearchClicked={this.handleSearchClick}
+                  clickPolygon={this.clickPolygon}
                 />
               </div>
             </div>
@@ -312,13 +318,25 @@ class App extends Component {
           </Sider>
           <Content style={{ margin: '0 16px' }}>
             <div className='links'>
-              <a href={"https://www.sjsu.edu"} target={"_blank"} rel="noopener noreferrer"> SJSU Home |</a>
+              <a
+                href={'https://www.sjsu.edu'}
+                target={'_blank'}
+                rel='noopener noreferrer'
+              >
+                {' '}
+                SJSU Home |
+              </a>
               <a href={'/'}> ICMap Home </a>
-              {this.state.showDirections && <Button type='link' icon="info-circle" onClick={this.showModal}> Directions Details </Button>}
+              {this.state.showDirections && (
+                <Button type='link' icon='info-circle' onClick={this.showModal}>
+                  {' '}
+                  Directions Details{' '}
+                </Button>
+              )}
             </div>
             {/* <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div> */}
             <WrappedMap
-              googleMapURL={`<Api key>`}
+              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyB6C4COk_CiplZhE0Mn4ZS76_zFoSUP1hU`}
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%` }} />}
               mapElement={<div style={{ height: `100%` }} />}
@@ -350,9 +368,6 @@ class App extends Component {
           SJSU Interactive Campus Map ©2019 Created by ICMap
         </Footer>
       </Layout>
-      //   <Footer style={{ textAlign: 'center' }}>SJSU Interactive Campus Map ©2019 Created by ICMap</Footer>
-
-      // </Layout>
     );
   }
 }

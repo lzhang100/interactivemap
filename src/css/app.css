@@ -1,4 +1,5 @@
-@import '~antd/dist/antd.css'; 
+@import '~antd/dist/antd.css';
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
 
 .APP {
   text-align: center;
@@ -17,18 +18,13 @@
   /* background-image: url(./logo_sjsu.png);
   background-size: 80px;
   background-repeat: no-repeat; */
-  background: darkblue;
-  padding: 15px; 
-  height: 130px;
-}
-.header img {
-  padding: 15px; 
+  background: rgb(0, 34, 184);
   height: 150px;
-  width: 500px;
+  font-family: 'Fjalla One', sans-serif;
 }
 
-.drawer img{
-  padding: 15px; 
+.drawer img {
+  padding: 15px;
   height: 300px;
   width: 220px;
 }
