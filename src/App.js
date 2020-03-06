@@ -268,7 +268,7 @@ class App extends Component {
           <Sider
           style={{
              overflow: 'auto',
-             height: '70vh',
+             height: '100vh',
              left: 0,
            }}
 
@@ -440,7 +440,7 @@ class App extends Component {
 
           </Menu>
           </Sider>
-          <Content style={{ margin: '0 16px' }}>
+          <Content style={{ margin: '0 16px', overflow: 'hidden' }}>
             <div className='links'>
               <a href={"https://www.sjsu.edu"} target={"_blank"} rel="noopener noreferrer"> SJSU Home |</a>
               <a href={'/'}> ICMap Home </a>
@@ -469,9 +469,9 @@ class App extends Component {
               drawerInfos={this.state.info}
               zoom={this.state.zoom}
             />
-            <Footer style={{ textAlign: 'center' }}>
+            {/* <Footer style={{ textAlign: 'center' }}>
               SJSU Interactive Campus Map ©2019 Created by ICMap
-            </Footer>
+            </Footer> */}
           </Content>
           {/* <Footer style={{ textAlign: 'center' }}>SJSU Interactive Campus Map ©2019 Created by ICMap</Footer> */}
         </Layout>
