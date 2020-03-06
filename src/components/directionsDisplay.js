@@ -1,14 +1,13 @@
 /*global google*/
 import React from 'react';
 import {DirectionsRenderer} from "react-google-maps";
-import buildingsJSON from '../buildings.json';
 import {message } from 'antd';
 
 
 export default class DirectionsDisplay extends React.Component {
     constructor(props) {
         super(props);
-        console.log('directions display props', props)
+        // console.log('directions display props', props)
         this.renderer = React.createRef()
         this.state = {
           display: false, //variable to check if get directions result from google maps api
@@ -47,16 +46,17 @@ export default class DirectionsDisplay extends React.Component {
         // console.log('send message');
         // console.log('sendoriginState,', this.props.origin)
         // console.log('senddestState,', this.props.destination)
-        console.log(this.props.travelMode)
-        console.log('origin in form', this.props.origin)
-        var origin_coords = buildingsJSON.filter(b => b.desc === this.props.origin);
-        var origin = ((origin_coords.length === 0) ? this.props.origin : origin_coords[0].center.lat.toString() + ', ' + origin_coords[0].center.lng.toString());
-        console.log('origin send to google', origin)
+        // console.log(this.props.travelMode)
+        // console.log('origin in form', this.props.origin)
+        var origin_info = this.props.buildingsInfo.filter(b => b.name === this.props.origin);
+        // var origin_coords = buildingsJSON.filter(b => b.desc === this.props.origin);
+        var origin = ((origin_info.length === 0) ? this.props.origin : origin_info[0].center.lat.toString() + ', ' + origin_info[0].center.lng.toString());
+        // console.log('origin send to google', origin)
 
-        console.log('destination in form', this.props.destination)
-        var dest_coords = buildingsJSON.filter(b => b.desc === this.props.destination);
-        var dest = ((dest_coords.length === 0) ? this.props.destination : dest_coords[0].center.lat.toString() + ', ' + dest_coords[0].center.lng.toString());
-        console.log('dest send to google', dest)
+        // console.log('destination in form', this.props.destination)
+        var dest_info = this.props.buildingsInfo.filter(b => b.name === this.props.destination);
+        var dest = ((dest_info.length === 0) ? this.props.destination : dest_info[0].center.lat.toString() + ', ' + dest_info[0].center.lng.toString());
+        // console.log('dest send to google', dest)
         DirectionsService.route({
           origin: {query: origin},
           destination: {query: dest},
@@ -69,7 +69,7 @@ export default class DirectionsDisplay extends React.Component {
             console.error(`error fetching directions ${response}`);
             this.setState({directions: null});
             this.setState({display: false});
-            message.error('Error fetching directions, please enter correct destination/origin', 7);
+            message.error('Error fetching directions, please enter correct destination/origin', 5);
           }
         });
     }

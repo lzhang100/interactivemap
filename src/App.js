@@ -59,22 +59,22 @@ class App extends Component {
   };
 
   showModal = () => {
-    console.log('change to showModal');
+    // console.log('change to showModal');
     this.setState({ modalState: true });
   };
 
   hideModal = () => {
-    console.log('change to hideModal');
+    // console.log('change to hideModal');
     this.setState({ modalState: false });
   };
 
   showDirections = () => {
-    console.log('change to showDirections');
+    // console.log('change to showDirections');
     this.setState({ showDirections: true });
   };
 
   hideDirections = () => {
-    console.log('change to hideDirections');
+    // console.log('change to hideDirections');
     this.setState({ showDirections: false });
   };
 
@@ -608,7 +608,7 @@ class App extends Component {
             </div>
             {/* <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div> */}
             <WrappedMap
-              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=<API KEY>`}
+              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyAMfYya8nMS02owOTeCWc5o-Z38v9spo9g`}
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%` }} />}
               mapElement={<div style={{ height: `100%` }} />}
@@ -629,6 +629,7 @@ class App extends Component {
               center={this.state.center}
               drawerInfos={this.state.info}
               zoom={this.state.zoom}
+              buildingsInfo={buildingInfo}
             />
           </Content>
         </Layout>

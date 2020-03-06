@@ -24,7 +24,8 @@ function Map({
   setDirections,
   showModal,
   hideModal,
-  modalState
+  modalState,
+  buildingsInfo
 }) {
   return (
     <GoogleMap
@@ -53,6 +54,7 @@ function Map({
         origin={originState}
         destination={destState}
         travelMode={travelModeState}
+        buildingsInfo={buildingsInfo}
       />
 
       <Drawer className="drawer"
@@ -80,6 +82,7 @@ function Map({
         hideModal={hideModal} 
         modalState={modalState}
         initialDest={drawerInfos.name}
+        buildingsInfo={buildingsInfo}
         />
         {/* <div>
            {drawerInfos.services.map(service => <li key={key2++}> {service} </li>)}

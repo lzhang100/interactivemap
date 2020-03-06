@@ -2,14 +2,13 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import '../css/app.css'
 import { Button, Icon, Modal, Form, Radio, Row, Col, AutoComplete} from 'antd';
-import buildingsJSON from '../buildings.json';
+import {message } from 'antd';
 
 const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
-  // eslint-disable-next-line
   class extends React.Component {
     constructor(props) {
       super(props);
-      this.options = buildingsJSON.map(b => b.desc);
+      this.options = this.props.buildingsInfo.map(b => b.name);
       this.state = {
         origin: '',
         destination: '',
@@ -24,15 +23,15 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
             lng: position.coords.longitude
           };
           var currLoc = pos.lat + ', ' + pos.lng
-          console.log('get geolocation', pos)
-          console.log('get geolocation, lat:', String(pos.lat), ' lon:', String(pos.lng))
+          // console.log('get geolocation', pos)
+          // console.log('get geolocation, lat:', String(pos.lat), ' lon:', String(pos.lng))
           // currLoc = 'Current Location: Latitude:' + String(pos.lat) + ' Lontitude:' + String(pos.lng)
-          document.getElementById('currLoc').innerHTML = 'Current Location: <br> Latitude:' + String(pos.lat) + ', Longitude:' + String(pos.lng)
-          console.log('change field value')
+          // document.getElementById('currLoc').innerHTML = 'Current Location: <br> Latitude:' + String(pos.lat) + ', Longitude:' + String(pos.lng)
+          // console.log('change field value')
           this.props.form.setFieldsValue({
             origin: currLoc,
           });
-          console.log(pos)
+          // console.log(pos)
           // map.setCenter(pos);
         }.bind(this), function() {
           this.handleLocationError(true);
@@ -44,20 +43,19 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
     }
 
     handleLocationError = (browserHasGeolocation)=> {
-      console.log(browserHasGeolocation ?
+      // console.log(browserHasGeolocation ?
+      //   'Error: The Geolocation service failed.' :
+      //   'Error: Your browser doesn\'t support geolocation.')
+      var msg = (browserHasGeolocation? 
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.')
-      // infoWindow.setPosition(pos);
-      // infoWindow.setContent(browserHasGeolocation ?
-      //                       'Error: The Geolocation service failed.' :
-      //                       'Error: Your browser doesn\'t support geolocation.');
-      // infoWindow.open(map);
+      message.error(msg, 5);
     }
 
     render() {
       // console.log('render direction form button')
       const { visible, onCancel, onCreate, onClear, form, initialDest} = this.props;
-      console.log('Destination passed to directions form:' + initialDest)
+      // console.log('Destination passed to directions form:' + initialDest)
       const { getFieldDecorator } = form;
       return (
         <Modal
@@ -155,13 +153,13 @@ export default class DirectionWindow extends React.Component {
   // };
 
   handleCancel = () => {
-    console.log('handle cancel')
+    // console.log('handle cancel')
     // this.setState({ visible: false });
     this.props.hideModal();
   };
 
   handleClear = () => {
-    console.log('handle clear')
+    // console.log('handle clear')
     const { form } = this.formRef.props;
     form.resetFields();
     document.getElementById('directionPanel').innerHTML = "";
@@ -173,13 +171,13 @@ export default class DirectionWindow extends React.Component {
   };
 
   handleCreate = () => {
-    console.log('handle create')
+    // console.log('handle create')
     const { form } = this.formRef.props;
     form.validateFields((err, values) => {
       if (err) {
         return;
       }
-      console.log('Received values of form: ', values);
+      // console.log('Received values of form: ', values);
       this.props.showDirections();
       this.props.closeDrawer();
       this.props.setDirections(values.origin, values.destination, values.travelMode)
@@ -205,6 +203,7 @@ export default class DirectionWindow extends React.Component {
           onCreate={this.handleCreate}
           onClear={this.handleClear}
           initialDest={this.props.initialDest}
+          buildingsInfo={this.props.buildingsInfo}
         />
       </div>
     );
