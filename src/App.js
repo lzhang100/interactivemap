@@ -166,7 +166,8 @@ class App extends Component {
       polygon: mapPolygons,
       visible: true,
       clickedPolygonIndex: polygonIndex,
-      center: {lat: polygonData[0].center.lat, lng: polygonData[0].center.lng}
+      center: {lat: polygonData[0].center.lat, lng: polygonData[0].center.lng},
+      zoom: 18.5
     });
 
   }
@@ -248,7 +249,7 @@ class App extends Component {
           <Sider
           style={{
              overflow: 'auto',
-             height: '70vh',
+             height: '100vh',
              left: 0,
            }}
 
@@ -462,11 +463,7 @@ class App extends Component {
               drawerInfos={this.state.info}
               zoom={this.state.zoom}
             />
-            <Footer style={{ textAlign: 'center' }}>
-              SJSU Interactive Campus Map ©2019 Created by ICMap
-            </Footer>
           </Content>
-          {/* <Footer style={{ textAlign: 'center' }}>SJSU Interactive Campus Map ©2019 Created by ICMap</Footer> */}
         </Layout>
         <Footer style={{ textAlign: 'center' }}>
           SJSU Interactive Campus Map ©2019 Created by ICMap
