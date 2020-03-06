@@ -1,7 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import '../css/app.css'
-import { Button, Icon, Modal, Form, Input, Radio, Row, Col, AutoComplete} from 'antd';
+import { Button, Icon, Modal, Form, Radio, Row, Col, AutoComplete} from 'antd';
 import buildingsJSON from '../buildings.json';
 
 const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
@@ -27,7 +27,7 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
           console.log('get geolocation', pos)
           console.log('get geolocation, lat:', String(pos.lat), ' lon:', String(pos.lng))
           // currLoc = 'Current Location: Latitude:' + String(pos.lat) + ' Lontitude:' + String(pos.lng)
-          document.getElementById('currLoc').innerHTML = 'Current Location: Latitude:' + String(pos.lat) + ' Lontitude:' + String(pos.lng)
+          document.getElementById('currLoc').innerHTML = 'Current Location: <br> Latitude:' + String(pos.lat) + ', Longitude:' + String(pos.lng)
           console.log('change field value')
           this.props.form.setFieldsValue({
             origin: currLoc,
