@@ -24,6 +24,7 @@
   border-bottom: 2px solid grey;
   overflow: scroll;
   overflow-x: hidden;
+  position: absolute;
 }
 
 .autoCompleteText ul::before {
