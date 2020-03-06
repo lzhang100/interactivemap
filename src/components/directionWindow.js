@@ -1,13 +1,15 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import '../css/app.css'
-import { Button, Icon, Modal, Form, Input, Radio, Row, Col } from 'antd';
+import { Button, Icon, Modal, Form, Input, Radio, Row, Col, AutoComplete} from 'antd';
+import buildingsJSON from '../buildings.json';
 
 const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
   // eslint-disable-next-line
   class extends React.Component {
     constructor(props) {
       super(props);
+      this.options = buildingsJSON.map(b => b.desc);
       this.state = {
         origin: '',
         destination: '',
@@ -62,11 +64,12 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
           visible={visible}
           title="Get Directions"
           onCancel={onCancel}
-          footer={[
+          footer={null}
+          /*footer={[
           <Button key='onclear' type="danger" onClick={onClear}> Clear</Button>,
           <Button key='oncreate'type="primary" onClick={onCreate}> Go</Button>,
           <Button key='onexit' type="default" icon="fullscreen-exit" onClick={onCancel}> Map</Button>,
-          ]}
+          ]}*/
           closeIcon={
             <Icon type="fullscreen-exit" />
           }
@@ -76,8 +79,15 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
               <Row gutter={3}>
               <Col span={22}>
                 {getFieldDecorator('origin', {
-                  rules: [{ required: true, message: 'Please input the start location!' }],
-                })(<Input type="textarea" id='origin'/>)}
+                  rules: [{ required: true, message: 'Please input origin!' }],
+                })(
+                  <AutoComplete
+                    /* dataSource={this.origin_options} */
+                    dataSource={this.options}
+                    placeholder="Please input origin here"
+                    filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}                   
+                  />
+                  )}
               </Col>
               <Col span={2}>
                 <Button icon="environment" onClick={this.handleClick}>
@@ -91,7 +101,15 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
               {getFieldDecorator('destination',{
                 rules: [{ required: true, message: 'Please input the destination!' }],
                 initialValue: initialDest,
-              })(<Input type="textarea" />)}
+              })(
+                /* <Input type="textarea" /> */
+                <AutoComplete
+                    /* dataSource={this.origin_options} */
+                    dataSource={this.options}
+                    placeholder="Please input origin here"
+                    filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}                   
+                  />
+                )}
             </Form.Item>
             <Form.Item label="Travel Mode">
               {getFieldDecorator('travelMode', {
@@ -105,6 +123,17 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
               )}
             </Form.Item>
           </Form>
+          <Row justify="center">
+            <Col span={8}>
+              <Button key='onclear' type="danger" onClick={onClear}>Clear Directions</Button>
+            </Col>
+            <Col span={8}>
+              <Button key='oncreate'type="primary" onClick={onCreate}>Get Directions</Button>
+            </Col>
+            <Col span={8}>
+              <Button key='onexit' type="default" icon="fullscreen-exit" onClick={onCancel}>Return To Map</Button>
+            </Col>
+          </Row>
           <div id='directionPanel'></div>
         </Modal>
       );
