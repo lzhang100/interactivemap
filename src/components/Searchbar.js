@@ -1,78 +1,118 @@
-import React, { Component } from 'react';
-import '../css/Searchbar.css';
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import { makeStyles } from '@material-ui/core/styles';
 
-import buildingsJSON from '../buildings.json';
-
-export class Searchbar extends Component {
-  constructor(props) {
-    super(props);
-    this.buildings = buildingsJSON;
-    this.state = {
-      suggestions: [],
-      text: ''
-    };
-    this.handleClick = this.handleClick.bind(this);
+const useStyles = makeStyles(theme => ({
+  inputRoot: {
+    color: 'black',
+    background: 'white',
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'white'
+    },
+    '&:hover .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'white'
+    }
   }
+}));
 
-  // function that is called whenever input changes
-  onTextChanged = e => {
-    const value = e.target.value;
-    let suggestions = [];
-
-    //user typed a acronymn
-    if (this.buildings.filter(b => b.acro === value).length > 0) {
-      suggestions = [this.buildings.filter(b => b.acro === value)[0].desc];
-      this.setState(() => ({ suggestions, text: value }));
+export default function Searchbar2(props) {
+  const handleChange = (event, values) => {
+    const value = event.target.innerHTML;
+    if (value === '') {
+      const inputAcro = event.target.value.toLowerCase();
+      if (props.buildings.filter(b => b.acro.toLowerCase() === inputAcro).length !== 0) {
+        const building = props.buildings.filter(b => b.acro.toLowerCase() === inputAcro)[0];
+        event.target.innerHTML = building.name;
+        props.onSearchClicked(building.center);
+        props.clickPolygon(building.name);
+        return;
+      }
       return;
     }
 
-    if (value.length > 0) {
-      const regex = new RegExp([value], 'i');
-      suggestions = this.buildings
-        .map(b => b.desc)
-        .sort()
-        .filter(v => regex.test(v));
-    }
-    this.setState(() => ({ suggestions, text: value }));
+    const building = props.buildings.filter(b => b.name === value)[0];
+    event.target.innerHTML = building.name;
+    props.onSearchClicked(building.center);
+    props.clickPolygon(building.name);
   };
 
-  handleClick(building) {
-    const center = this.buildings.filter(b => b.desc === building)[0].center;
-    this.setState(() => ({ text: building, suggestions: [] }));
-    this.props.onSearchClicked(center);
-    this.props.clickPolygon(building);
-  }
+  const classes = useStyles();
 
-  renderSuggestions() {
-    const { suggestions } = this.state;
-    if (suggestions.length === 0) {
-      return null;
-    }
-    return (
-      <ul>
-        {suggestions.map((building, idx) => (
-          <li key={idx} onClick={() => this.handleClick(building)}>
-            {building}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-  render() {
-    const { text } = this.state;
-    return (
-      <div className='autoCompleteText'>
-        <input
-          value={text}
-          onChange={this.onTextChanged}
-          placeholder='Search...'
-          type='text'
-        />
-        {this.renderSuggestions()}
-      </div>
-    );
-  }
+  return (
+    <div style={{ width: '100%' }}>
+      <Autocomplete
+        id='free-solo-demo'
+        freeSolo
+        color='primary'
+        classes={classes}
+        options={props.buildings.map(b => b.name).sort()}
+        onChange={handleChange}
+        renderInput={params => (
+          <TextField {...params} label='Search...' margin='normal' variant='outlined' />
+        )}
+      />
+    </div>
+  );
 }
 
-export default Searchbar;
+// export class Searchbar2 extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.buildings = buildingsJSON;
+//     this.state = {
+//       suggestions: [],
+//       text: ''
+//     };
+//   }
+
+//   handleChange = (event, values) => {
+//     const value = event.target.innerHTML;
+//     if (value === '') {
+//       const inputAcro = event.target.value.toLowerCase();
+//       if (
+//         this.buildings.filter(b => b.acro.toLowerCase() === inputAcro)
+//           .length !== 0
+//       ) {
+//         const building = this.buildings.filter(
+//           b => b.acro.toLowerCase() === inputAcro
+//         )[0];
+//         event.target.innerHTML = building.desc;
+//         this.props.onSearchClicked(building.center);
+//         this.props.clickPolygon(building.desc);
+//         return;
+//       }
+//       return;
+//     }
+
+//     const building = this.buildings.filter(b => b.desc === value)[0];
+//     this.props.onSearchClicked(building.center);
+//     this.props.clickPolygon(building.desc);
+//   };
+
+//   render() {
+//     const { text } = this.state;
+//     const classes = useStyles();
+//     return (
+//       <div style={{ width: '100%' }}>
+//         <Autocomplete
+//           id='free-solo-demo'
+//           freeSolo
+//           classes={classes}
+//           options={this.buildings.map(b => b.desc)}
+//           onChange={this.handleChange}
+//           renderInput={params => (
+//             <TextField
+//               {...params}
+//               label='Search...'
+//               margin='normal'
+//               variant='outlined'
+//             />
+//           )}
+//         />
+//       </div>
+//     );
+//   }
+// }
+
+// export default Searchbar2;
