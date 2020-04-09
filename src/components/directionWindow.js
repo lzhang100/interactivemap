@@ -23,16 +23,9 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
             lng: position.coords.longitude
           };
           var currLoc = pos.lat + ', ' + pos.lng
-          // console.log('get geolocation', pos)
-          // console.log('get geolocation, lat:', String(pos.lat), ' lon:', String(pos.lng))
-          // currLoc = 'Current Location: Latitude:' + String(pos.lat) + ' Lontitude:' + String(pos.lng)
-          // document.getElementById('currLoc').innerHTML = 'Current Location: <br> Latitude:' + String(pos.lat) + ', Longitude:' + String(pos.lng)
-          // console.log('change field value')
           this.props.form.setFieldsValue({
             origin: currLoc,
           });
-          // console.log(pos)
-          // map.setCenter(pos);
         }.bind(this), function() {
           this.handleLocationError(true);
         });
@@ -43,9 +36,6 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
     }
 
     handleLocationError = (browserHasGeolocation)=> {
-      // console.log(browserHasGeolocation ?
-      //   'Error: The Geolocation service failed.' :
-      //   'Error: Your browser doesn\'t support geolocation.')
       var msg = (browserHasGeolocation? 
         'Error: The Geolocation service failed.' :
         'Error: Your browser doesn\'t support geolocation.')
@@ -53,9 +43,7 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
     }
 
     render() {
-      // console.log('render direction form button')
       const { visible, onCancel, onCreate, onClear, form, initialDest} = this.props;
-      // console.log('Destination passed to directions form:' + initialDest)
       const { getFieldDecorator } = form;
       return (
         <Modal
@@ -63,11 +51,6 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
           title="Get Directions"
           onCancel={onCancel}
           footer={null}
-          /*footer={[
-          <Button key='onclear' type="danger" onClick={onClear}> Clear</Button>,
-          <Button key='oncreate'type="primary" onClick={onCreate}> Go</Button>,
-          <Button key='onexit' type="default" icon="fullscreen-exit" onClick={onCancel}> Map</Button>,
-          ]}*/
           closeIcon={
             <Icon type="fullscreen-exit" />
           }
@@ -80,7 +63,6 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
                   rules: [{ required: true, message: 'Please input origin!' }],
                 })(
                   <AutoComplete
-                    /* dataSource={this.origin_options} */
                     dataSource={this.options}
                     placeholder="Please input origin here"
                     filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}                   
@@ -100,9 +82,7 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
                 rules: [{ required: true, message: 'Please input the destination!' }],
                 initialValue: initialDest,
               })(
-                /* <Input type="textarea" /> */
                 <AutoComplete
-                    /* dataSource={this.origin_options} */
                     dataSource={this.options}
                     placeholder="Please input origin here"
                     filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}                   
@@ -140,44 +120,26 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
 );
 
 export default class DirectionWindow extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     visible: false,
-  //   };
-  // }
-
-  // showModal = () => {
-  //   console.log('showModal')
-  //   this.setState({ visible: true });
-  // };
-
   handleCancel = () => {
-    // console.log('handle cancel')
-    // this.setState({ visible: false });
     this.props.hideModal();
   };
 
   handleClear = () => {
-    // console.log('handle clear')
     const { form } = this.formRef.props;
     form.resetFields();
     document.getElementById('directionPanel').innerHTML = "";
     document.getElementById('currLoc').innerHTML = "";
     this.props.hideDirections();
-    // this.setState({ visible: false });
     this.props.hideModal();
     this.props.closeDrawer();
   };
 
   handleCreate = () => {
-    // console.log('handle create')
     const { form } = this.formRef.props;
     form.validateFields((err, values) => {
       if (err) {
         return;
       }
-      // console.log('Received values of form: ', values);
       this.props.showDirections();
       this.props.closeDrawer();
       this.props.setDirections(values.origin, values.destination, values.travelMode)
@@ -189,8 +151,6 @@ export default class DirectionWindow extends React.Component {
   };
 
   render() {
-    // console.log('get destination from drawer')
-    // console.log(this.props.initialDest)
     return (
       <div>
         <Button type="primary" onClick={this.props.showModal}>
@@ -208,14 +168,4 @@ export default class DirectionWindow extends React.Component {
       </div>
     );
   }
-
-  // componentDidUpdate(prevProps) {
-  //   console.log('direction component update')
-  //   console.log(this.props.initialDest)
-  //   console.log(prevProps.initialDest)
-  //   if (this.props.initialDest !== prevProps.initialDest) {
-  //     console.log('props diff')
-  //     this.setState({ destination: this.props.initialDest });
-  //   }
-  // }
 }
