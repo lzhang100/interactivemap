@@ -21,10 +21,18 @@
   background: rgb(0, 34, 184);
   height: 150px;
   font-family: 'Fjalla One', sans-serif;
+  line-height: 40px;
+  padding: 2%;
 }
 
 .drawer img {
   padding: 15px;
   height: 300px;
   width: 220px;
+}
+
+@media screen and (max-width: 750px) {
+  .header {
+    line-height: 100%;
+  }
 }
