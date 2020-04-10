@@ -59,7 +59,7 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
                   <AutoComplete
                     dataSource={this.options}
                     placeholder="Please input origin here"
-                    filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}                   
+                    filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                   />
                   )}
               </Col>
@@ -79,7 +79,7 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
                 <AutoComplete
                     dataSource={this.options}
                     placeholder="Please input origin here"
-                    filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}                   
+                    filterOption={(inputValue, option) => option.props.children.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1}
                   />
                 )}
             </Form.Item>
