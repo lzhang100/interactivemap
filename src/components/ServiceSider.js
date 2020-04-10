@@ -21,7 +21,8 @@ export default class ServiceSider extends React.Component {
       <div className='logo' />
       <Menu theme='light' defaultSelectedKeys={['1']} mode='inline'>
       <Menu.Item key='1'>
-      <span>Explore Services</span>
+      <span><Icon type='menu' />
+      <span>Explore Services</span></span>
       </Menu.Item>
       <SubMenu
       key='sub1'
