@@ -12,6 +12,7 @@ export default class ServiceSider extends React.Component {
         height: '100vh',
         left: 0
       }}
+      breakpoint="md"
       theme='light'
       width='250'
       collapsible='true'
