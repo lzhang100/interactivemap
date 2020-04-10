@@ -26,20 +26,14 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
           this.props.form.setFieldsValue({
             origin: currLoc,
           });
+          document.getElementById('currLoc').innerHTML = 'Current Location（Latitude，Longitude）'
         }.bind(this), function() {
-          this.handleLocationError(true);
+          message.error('Error: The Geolocation service failed.', 5);
         });
       } else {
         // Browser doesn't support Geolocation
-        this.handleLocationError(false);
+        message.error('Error: Your browser doesn\'t support geolocation.', 5);
       }
-    }
-
-    handleLocationError = (browserHasGeolocation)=> {
-      var msg = (browserHasGeolocation? 
-        'Error: The Geolocation service failed.' :
-        'Error: Your browser doesn\'t support geolocation.')
-      message.error(msg, 5);
     }
 
     render() {
