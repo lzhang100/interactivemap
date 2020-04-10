@@ -246,6 +246,7 @@ class App extends Component {
               height: '100vh',
               left: 0
             }}
+            breakpoint="md"
             theme='light'
             width='250'
             collapsible
@@ -255,7 +256,7 @@ class App extends Component {
             <div className='logo' />
             <Menu theme='light' defaultSelectedKeys={['1']} mode='inline'>
               <Menu.Item key='1'>
-                <span>Explore Services</span>
+                <Icon type='menu' /><span>Explore Services</span>
               </Menu.Item>
               <SubMenu
                 key='sub1'
@@ -608,7 +609,7 @@ class App extends Component {
             </div>
             {/* <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div> */}
             <WrappedMap
-              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=<API KEY>`}
+              googleMapURL={`https://maps.googleapis.com/maps/api/<API KEY>`}
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%` }} />}
               mapElement={<div style={{ height: `100%` }} />}

@@ -26,7 +26,7 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
           this.props.form.setFieldsValue({
             origin: currLoc,
           });
-          document.getElementById('currLoc').innerHTML = 'Current Location（Latitude，Longitude）'
+          document.getElementById('currLoc').innerHTML = 'Current Location（Latitude, Longitude）'
         }.bind(this), function() {
           message.error('Error: The Geolocation service failed.', 5);
         });
@@ -96,13 +96,13 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
             </Form.Item>
           </Form>
           <Row justify="center">
-            <Col span={8}>
+            <Col xs={24} md={8} lg={8} >
               <Button key='onclear' type="danger" onClick={onClear}>Clear Directions</Button>
             </Col>
-            <Col span={8}>
+            <Col xs={24} md={8} lg={8}>
               <Button key='oncreate'type="primary" onClick={onCreate}>Get Directions</Button>
             </Col>
-            <Col span={8}>
+            <Col xs={24} md={8} lg={8}>
               <Button key='onexit' type="default" icon="fullscreen-exit" onClick={onCancel}>Return To Map</Button>
             </Col>
           </Row>
