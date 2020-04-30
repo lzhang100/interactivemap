@@ -52,7 +52,7 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
           <Form layout="vertical">
             <Form.Item label="From">
               <Row gutter={3}>
-              <Col span={22}>
+              <Col span={24}>
                 {getFieldDecorator('origin', {
                   rules: [{ required: true, message: 'Please input origin!' }],
                 })(
@@ -63,11 +63,11 @@ const DirectionCreateForm = Form.create({ name: 'form_in_modal' })(
                   />
                   )}
               </Col>
-              <Col span={2}>
-                <Button icon="environment" onClick={this.handleClick}>
+              {/* <Col span={2}> */}
+                {/* <Button icon="environment" onClick={this.handleClick}> */}
                   {/* Get current location */}
-                </Button>
-              </Col>
+                {/* </Button> */}
+              {/* </Col> */}
             </Row>
             <div id = 'currLoc'></div>
             </Form.Item>

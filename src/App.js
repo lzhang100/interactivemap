@@ -32,7 +32,7 @@ class App extends Component {
     polygon: [],
     info: { img: './css/engbuilding1.jpg' },
     center: { lat: 37.3352, lng: -121.8811 },
-    zoom: 16.5,
+    zoom: window.innerWidth < 750 ? 15.5 : 16.5,
     clickedPolygonIndex: -1
   };
 
@@ -165,7 +165,7 @@ class App extends Component {
       visible: true,
       clickedPolygonIndex: polygonIndex,
       center: { lat: polygonData[0].center.lat, lng: polygonData[0].center.lng },
-      zoom: 18.5
+      zoom: window.innerWidth < 750 ? 16.5 : 17.5
     });
   };
 
@@ -177,7 +177,7 @@ class App extends Component {
 
   */
   componentDidMount() {
-    axios.get('http://www.localhost:4000/polygons').then(res => {
+    axios.get('http://ec2-54-193-204-163.us-west-1.compute.amazonaws.com:4000/polygons').then(res => {
       res.data.forEach(building => {
         if ((building.outer !== undefined) & (building.inner !== undefined)) {
           buildingInfo.push(building);
@@ -257,7 +257,7 @@ class App extends Component {
             </div>
             {/* <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div> */}
             <WrappedMap
-              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=`}
+              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyAXG3EOcr0_cH245x1V2eRnCmkvsfe3uy4`}
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%` }} />}
               mapElement={<div style={{ height: `100%` }} />}

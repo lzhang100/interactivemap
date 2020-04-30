@@ -34,6 +34,7 @@ function Map({
       zoom={zoom}
       center={center}
       options={{
+        gestureHandling: 'greedy',
         styles: [
           {
             elementType: 'labels',
