@@ -41,7 +41,6 @@ class App extends Component {
   }
 
   onCollapse = collapsed => {
-    //console.log(collapsed);
     this.setState({ collapsed });
   };
 
@@ -59,22 +58,18 @@ class App extends Component {
   };
 
   showModal = () => {
-    // console.log('change to showModal');
     this.setState({ modalState: true });
   };
 
   hideModal = () => {
-    // console.log('change to hideModal');
     this.setState({ modalState: false });
   };
 
   showDirections = () => {
-    // console.log('change to showDirections');
     this.setState({ showDirections: true });
   };
 
   hideDirections = () => {
-    // console.log('change to hideDirections');
     this.setState({ showDirections: false });
   };
 
@@ -90,7 +85,6 @@ class App extends Component {
       let polygonIndex;
       for (var i = 0; i < buildingInfo.length; i++) {
         if (buildingInfo[i].name === name) {
-          //console.log(mapPolygonsData[i].name);
           polygonIndex = i;
           break;
         }
@@ -169,13 +163,6 @@ class App extends Component {
     });
   };
 
-  /*Add sample info to make sure the drawer has some information from the start
-  Grab all the polygons json objects and store in mapPolygonData
-  Create the polygons and store in mapPolygonsData
-  clickPolygon is passed the name of the building that was clicked. Set states with info for the drawer, center the map with polygon, and make the drawer visible
-  clickPolygon is passed the name of the building that was clicked and center the map with polygon
-
-  */
   componentDidMount() {
     axios.get('http://ec2-54-193-204-163.us-west-1.compute.amazonaws.com:4000/polygons').then(res => {
       res.data.forEach(building => {
@@ -255,9 +242,9 @@ class App extends Component {
                 </Button>
               )}
             </div>
-            {/* <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div> */}
+
             <WrappedMap
-              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyAXG3EOcr0_cH245x1V2eRnCmkvsfe3uy4`}
+              googleMapURL={`REPLACE_WITH_YOUR_GOOGLE_MAP_API`}
               loadingElement={<div style={{ height: `100%` }} />}
               containerElement={<div style={{ height: `100%` }} />}
               mapElement={<div style={{ height: `100%` }} />}
